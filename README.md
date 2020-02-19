@@ -1,8 +1,41 @@
 # HexactaLabs-.NETCore_React
 
-Hexacta 2019
+Hexacta 2020
+
+Bienvenidos a los Hexacta Labs
+
+Agenda:
+* _Initial_: Presentación de la aplicación básica, pasos para correrla localmente y planteo de la primer actividad: Backend con .NetCore.
+* __Level 1: Se nivelará presentando una aplicación con las actividades de la etapa inicial completas. Planteo de la segunda actividad: Frontend con ReactJS.__
+* _Level 2_: Se presenta la aplicación con las actividades anteriores completas. Planteo de la tercera actividad: FullStack development.
+* _Final_: Se presenta la aplicación completa. Planteo de la actividad final. 
+
 
 ## [Documentación](./Docs/index.md)
+
+
+# Nivelación 1
+En esta presentación disponemos de una aplicación con las actividades de la etapa inicial resueltas. La sección Proveedores ya se encuentra implementada por lo que se puede comparar la solución propuesta con lo realizado anteriormente.
+No es necesario utilizar esta versión de la Stock Web pero sí es recomendable para poder tener una base en común.
+
+En este nivel el ejercicio es hacer lo opuesto a la etapa anterior. Disponemos de un backend completo para el manejo de tipos de producto (Entidad __ProductType__), que podemos inspeccionar en la interfaz __Swagger__ (ejemplo: http://localhost:5000/swagger)
+El objetivo en esta etapa es crear el frontend y una sección en la Home para acceder a los detalles de las categorías de Productos.
+
+El sistema debe ser capaz de:
+* Crear, editar y eliminar una categoría de producto a través de la sección __Categorías__ dentro del sitio.
+* Realizar búsquedas de categorías o tipos de productos.
+* La web React debe conectarse con estos servicio configurando un store.
+
+# Tips
+## Entidad Store (Tienda)
+En la web se encuentra una sección llamada Tiendas en donde se presenta una pantalla con la implementación completa sobre:
+* Búsqueda de tiendas: A través de un formulario en pantalla se envía una serie de parámetros para realizar la consulta en la base de datos.
+* Listado de tiendas: una grilla presenta el detalle de cada tienda además de los botones de acción para:
+  * Ir al detalle de una tienda
+  * Navegar a la pantalla de edición
+  * Eliminar tienda
+
+Se recomienda utilizar esta entidad tanto del lado frontend como backend para realizar las actividades teniendo esta sección como referencia.
 
 ## Front end
 
@@ -29,13 +62,3 @@ The SDK 'Microsoft.NET.Sdk.Web' specified could not be found.
 https://github.com/OmniSharp/omnisharp-roslyn/issues/1313#issuecomment-429039879
 ```
 
-## Actividad Final
-Para el trabajo final disponemos de una versión de la Stock Web completa con el manejo CRUD de todas las entidades tanto de backend como de frontend.
-Este ejercicio final propone el modelado e implementación de un carrito de compra, para el que se necesita:
-
-* Agregar en la tabla de productos la opción de _agregar producto al carrito_ con un botón y un campo de cantidad.
-* Los productos cuyo stock sea 0 no deben habilitar la opción para agregar al carrito.
-* Una nueva sección en el sitio debe mostrar el detalle del carrito con una tabla donde se muestren los productos seleccionados, la cantidad y el precio unitario. En la sección inferior de la pantalla se debe mostrar el precio total a pagar y un botón de checkout.
-* Al presionar el botón para realizar la compra, el sistema debe chequear el stock disponible en ese momento para cada producto seleccionado. Si hay stock para un producto en particular, se debe actualizar la cantidad de existencias restando la cantidad que el usuario seleccionó.
-* Aquellos productos que no tienen suficiente stock al momento de realizar la compra no deben ser actualizados.
-* Al finalizar la compra el sistema debe mostrar al usuario una nueva página donde se muestre el detalle de qué productos pudieron reservarse y el precio total de la compra. Tener en cuenta que este precio puede ser distinto al precio que se mostró en la página anterior por falta de stock.
