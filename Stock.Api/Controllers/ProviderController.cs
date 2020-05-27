@@ -87,12 +87,16 @@ namespace Stock.Api.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var provider = this.service.Get(id);
+            try {
+                var provider = this.service.Get(id);
 
-            Expression<Func<Product, bool>> filter = x => x.ProviderId.Equals(id);
+                Expression<Func<Product, bool>> filter = x => x.ProviderId.Equals(id);
 
-            this.service.Delete(provider);
-            return Ok();
+                this.service.Delete(provider);
+                return Ok(new { Success = true, Message = "", data = id });
+            } catch {
+                return Ok(new { Success = false, Message = "", data = id });
+            }
         }
 
         [HttpPost("search")]
