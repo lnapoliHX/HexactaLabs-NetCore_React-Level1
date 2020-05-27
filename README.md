@@ -24,5 +24,4 @@ El objetivo en esta etapa es crear el frontend y una sección en la Home para ac
 
 El sistema debe ser capaz de:
 * Crear, editar y eliminar una categoría de producto a través de la sección __Categorías__ dentro del sitio.
-* Realizar búsquedas de categorías o tipos de productos.
 * La web React debe conectarse con estos servicio configurando un store.
