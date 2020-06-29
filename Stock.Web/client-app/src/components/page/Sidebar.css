@@ -17,6 +17,11 @@
     text-decoration: none;
 }
 
+.ui-sidebar-section-nav a i {
+    margin-right: 8px;
+}
+
 .ui-sidebar-section-nav a p {
+    display: inline-block;
     margin-bottom: 0;
 }
