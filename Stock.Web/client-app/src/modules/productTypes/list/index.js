@@ -36,7 +36,7 @@ function handleLoading(state, { loading }) {
 function handleSet(state, { productTypes }) {
   return {
     ...state,
-    ids: productTypes.map(productType => productType.id),
+    ids: productTypes.map(producttype => producttype.id),
     byId: normalize(productTypes)
   };
 }

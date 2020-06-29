@@ -17,10 +17,6 @@ const ProductTypeView = props => {
 				<Col lg="2">Email</Col>
 				<Col>{props.productType.description}</Col>
 			</Row>
-			<Row>
-				<Col lg="2">Teléfono</Col>
-				<Col></Col>
-			</Row>
 	  	</div>
 		<div className="productType-view__button-row">
 			<Button title="Editar" aria-label="Editar"

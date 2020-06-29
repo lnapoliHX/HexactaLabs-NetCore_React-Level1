@@ -28,7 +28,7 @@ class ProductTypesPage extends React.Component {
   render() {
     return (
       <Presentation
-        data={this.props.productTypes}
+        data={this.props.producttypes}
         dataLoading={this.props.loading}
         defaultPageSize={5}
         filters={this.state.filters}
@@ -42,7 +42,7 @@ class ProductTypesPage extends React.Component {
 }
 
 ProductTypesPage.propTypes = {
-  productTypes: PropTypes.array.isRequired,
+  producttypes: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
 };
 

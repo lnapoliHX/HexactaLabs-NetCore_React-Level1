@@ -11,7 +11,7 @@ const Create = ({ create: onSubmit, goBack: onCancel }) => {
     <Container fluid>
       <Row>
           <div className="block-header">
-            <h2>Nuevo Proveedor</h2>
+            <h2>Nuevo Product Type</h2>
             </div>
       </Row>
       <Row>

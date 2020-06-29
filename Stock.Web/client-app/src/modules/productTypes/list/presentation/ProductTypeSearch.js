@@ -11,7 +11,7 @@ const Search = props => {
         <Col>
 		<Input
 					name="iniciales"
-					id="inicialesInput"
+					id="nameInput"
 					type="text"
 					onChange={props.handleFilter}
 					value={props.filters.initials}
@@ -21,7 +21,7 @@ const Search = props => {
         <Col>
 		<Input
 					name="descripcion"
-					id="descripcionInput"
+					id="descriptionInput"
 					type="text"
 					onChange={props.handleFilter}
 					value={props.filters.description}

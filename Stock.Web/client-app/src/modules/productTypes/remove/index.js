@@ -22,7 +22,7 @@ export function remove(id) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .delete(`/productType/${id}`)
+      .delete(`/producttype/${id}`)
       .then(response => {
         if (!response.data.success) {
           var error = {response: {data: {Message: response.data.message}}};
@@ -32,9 +32,9 @@ export function remove(id) {
 
         dispatch(success(id));
         dispatch(setLoading(false));
-        toast.success("Se eliminó el proveedor con éxito");
+        toast.success("Se eliminó el productType con éxito");
         
-        return dispatch(replace("/productType"));
+        return dispatch(replace("/producttype"));
       })
       .catch(error => {
         return handleError(dispatch, error);
