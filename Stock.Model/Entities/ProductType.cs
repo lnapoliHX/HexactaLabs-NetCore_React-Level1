@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Stock.Model.Entities
 {
-    [Table("producttype")]
+    [Table("productType")]
     public class ProductType: IEntity
     {
         public string Id { get; set; }

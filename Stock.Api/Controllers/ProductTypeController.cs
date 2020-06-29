@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 namespace Stock.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/producttype")]
+    [Route("api/producTtype")]
     [ApiController]
     public class ProductTypeController : ControllerBase
     {
