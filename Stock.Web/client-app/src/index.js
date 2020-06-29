@@ -42,7 +42,8 @@ const menu_factory = (title, to, icon, children = []) => ({
 });
 
 const menu = [
-  menu_factory("Proveedor", "/provider", "algun-icon"),
+  menu_factory("Proveedores", "/provider", "algun-icon"),
+  menu_factory("Tipos de producto", "/producttype", "algun-icon"),
   menu_factory("Tiendas", "/store", "algun-icon")
 ];
 
