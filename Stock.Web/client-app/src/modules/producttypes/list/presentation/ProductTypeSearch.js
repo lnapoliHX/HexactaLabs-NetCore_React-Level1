@@ -20,7 +20,7 @@ const Search = props => {
         </Col>
         <Col>
 		<Input
-					name="Descripcion"
+					name="description"
 					id="descriptionInput"
 					type="text"
 					onChange={props.handleFilter}
