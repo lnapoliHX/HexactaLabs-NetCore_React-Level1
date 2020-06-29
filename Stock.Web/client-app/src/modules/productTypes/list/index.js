@@ -105,7 +105,7 @@ export function getAll() {
   return dispatch => {
     dispatch(setLoading(true));
     return api
-      .get("/productType")
+      .get("/producttype")
       .then(response => {
         dispatch(setProductTypes(response.data));
         return dispatch(setLoading(false));
@@ -124,7 +124,7 @@ export function getById(id) {
 export function fetchByFilters(filters) {
   return function(dispatch) {
     return api
-      .post("/productType/search", pickBy(filters))
+      .post("/producttype/search", pickBy(filters))
       .then(response => {
         dispatch(setProductTypes(response.data));
       })
@@ -136,7 +136,7 @@ export function fetchByFilters(filters) {
 
 /* Selectors */
 function base(state) {
-  return state.productType.list;
+  return state.producttype.list;
 }
 
 export function getLoading(state) {

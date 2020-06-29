@@ -26,7 +26,7 @@ const App = props => (
       <Route path="/provider" component={ProviderPage} />
       <Route path="/logout" component={LogoutPage} />
       <Route path="/store" component={StorePage} />
-      <Route path="/productType" component={ProductTypePage} />
+      <Route path="/producttype" component={ProductTypePage} />
     </Layout>
     <ToastContainer autoClose={2000} />
   </Private>

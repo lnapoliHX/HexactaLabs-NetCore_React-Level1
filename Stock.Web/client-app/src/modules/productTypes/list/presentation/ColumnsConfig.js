@@ -6,13 +6,13 @@ import PropTypes from "prop-types";
 
 const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link className="productType-list__button" to={`/productType/view/${value}`}>
+    <Link className="productType-list__button" to={`/producttype/view/${value}`}>
       <FaSearch className="productType-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link className="productType-list__button" to={`/productType/update/${value}`}>
+    <Link className="productType-list__button" to={`/producttype/update/${value}`}>
       <FaEdit className="productType-list__button-icon" />
     </Link>
   );
@@ -44,18 +44,13 @@ HeaderComponent.displayName = "HeaderComponent";
 
 const columns = [
   {
-    Header: <HeaderComponent title="Nombre" />,
-    accessor: "name",
+    Header: <HeaderComponent title="Iniciales" />,
+    accessor: "initials",
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Email" />,
-    accessor: "email",
-    Cell: props => props.value
-  },
-  {
-    Header: <HeaderComponent title="Telefono" />,
-    accessor: "phone",
+    Header: <HeaderComponent title="Descripcion" />,
+    accessor: "decription",
     Cell: props => props.value
   },
   {

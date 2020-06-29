@@ -10,8 +10,8 @@ class ProductTypesPage extends React.Component {
     super();
     this.state = {
       filters: {
-        name: "",
-        email: "",
+        initials: "",
+        description: "",
         condition: "AND"
       }
     };

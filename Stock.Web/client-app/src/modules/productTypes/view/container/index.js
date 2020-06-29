@@ -12,7 +12,7 @@ export class ProductTypesViewPage extends Component {
     return (
       <React.Fragment>
         <ProductType product={this.props.productType} {...this.props} />
-        <Route path="/productType/view/:id/remove" component={Remove} />
+        <Route path="/producttype/view/:id/remove" component={Remove} />
       </React.Fragment>
     );
   }
