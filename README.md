@@ -25,3 +25,10 @@ El objetivo en esta etapa es crear el frontend y una sección en la Home para ac
 El sistema debe ser capaz de:
 * Crear, editar y eliminar una categoría de producto a través de la sección __Categorías__ dentro del sitio.
 * La web React debe conectarse con estos servicio configurando un store.
+
+Recordemos que la documentación de React se encuentra [aquí](https://github.com/lnapoliHX/HexactaLabs-NetCore_React-Initial/blob/master/Docs/react.md) y sobre Redux [aquí](https://github.com/lnapoliHX/HexactaLabs-NetCore_React-Initial/blob/master/Docs/redux.md)
+
+## Tips
+- Revisar *Stock.Web/client-app/src/modules/providers* para comparar el frontend.
+- Utilizar Swagger para comprender el funcionamiento del backend de ProductType
+
