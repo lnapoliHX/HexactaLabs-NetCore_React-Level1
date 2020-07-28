@@ -31,4 +31,3 @@ Recordemos que la documentación de React se encuentra [aquí](https://github.co
 ## Tips
 - Revisar *Stock.Web/client-app/src/modules/providers* para comparar el frontend.
 - Utilizar Swagger para comprender el funcionamiento del backend de ProductType
-
