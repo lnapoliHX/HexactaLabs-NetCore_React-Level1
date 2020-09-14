@@ -22,7 +22,7 @@ import "react-widgets/dist/css/react-widgets.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-
+import { Product } from "react-redux";
 import { createBrowserHistory } from "history";
 import configureStore from "./store/configureStore";
 import { ConnectedRouter } from "connected-react-router";
@@ -42,6 +42,7 @@ const menu_factory = (title, to, icon, children = []) => ({
 });
 
 const menu = [
+  menu_factory("Producto", "/product", "algun-icon"),
   menu_factory("Proveedor", "/provider", "algun-icon"),
   menu_factory("Tiendas", "/store", "algun-icon")
 ];
@@ -52,5 +53,14 @@ ReactDOM.render(
       <App menu={menu} />
     </ConnectedRouter>
   </Provider>,
+  document.getElementById("root")
+);
+
+ReactDOM.render(
+  <Product store={store}>
+    <ConnectedRouter history={history}>
+      <App menu={menu} />
+    </ConnectedRouter>
+  </Product>,
   document.getElementById("root")
 );
