@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stock.Api.DTOs;
 using Stock.Api.Extensions;
@@ -53,7 +54,7 @@ namespace Stock.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
@@ -67,7 +68,7 @@ namespace Stock.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
@@ -87,14 +88,17 @@ namespace Stock.Api.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            try {
+            try
+            {
                 var provider = this.service.Get(id);
 
                 Expression<Func<Product, bool>> filter = x => x.ProviderId.Equals(id);
 
                 this.service.Delete(provider);
                 return Ok(new { Success = true, Message = "", data = id });
-            } catch {
+            }
+            catch
+            {
                 return Ok(new { Success = false, Message = "", data = id });
             }
         }
