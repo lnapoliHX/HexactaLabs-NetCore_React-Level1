@@ -93,7 +93,7 @@ export function getAll() {
     return api
       .get("/store")
       .then(response => {
-        dispatch(setStores(response.data));
+        dispatch(setStores(response.data.stores));
         return dispatch(setLoading(false));
       })
       .catch(error => {
@@ -112,7 +112,7 @@ export function fetchByFilters(filters) {
     return api
       .post("/store/search", pickBy(filters))
       .then(response => {
-        dispatch(setStores(response.data));
+        dispatch(setStores(response.data.stores));
       })
       .catch(error => {
         apiErrorToast(error);

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
+using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> 2fad48e785f6f26f8fd8c9d3214334d4383693bc
 using Stock.Api.DTOs;
 using Stock.Api.Extensions;
 using Stock.AppService.Services;
@@ -25,6 +29,11 @@ namespace Stock.Api.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Permite agregar una nueva Tienda al repositorio
+        /// </summary>
+        /// <param name="value">Propiedades de la Tienda</param>
+        /// <returns>Exito o Error y la Tienda que se intentó crear</returns>
         [HttpPost]
         public ActionResult Post([FromBody] StoreDTO value)
         {
@@ -35,68 +44,111 @@ namespace Stock.Api.Controllers
                 var store = this.mapper.Map<Store>(value);
                 this.service.Create(store);
                 value.Id = store.Id;
-                return Ok(new { Success = true, Message = "", data = value });
+                return Ok(new { Success = true, Message = "Store Created!", Store = value });
             }
             catch
             {
-                return Ok(new { Success = false, Message = "The name is already in use" });
+                return Ok(new { Success = false, 
+                                Message = "The name is already in use!!!", Store = value });
             }
         }
 
+        /// <summary>
+        /// Permite recuperar todas las Tiendas existentes en el repositorio
+        /// </summary>
+        /// <returns>Una colección de Tiendas o un código en caso de error</returns>
         [HttpGet]
         public ActionResult<IEnumerable<StoreDTO>> Get()
         {
             try
             {
                 var result = this.service.GetAll();
-                return this.mapper.Map<IEnumerable<StoreDTO>>(result).ToList();
+//                return this.mapper.Map<IEnumerable<StoreDTO>>(result).ToList();
+                return Ok(new {Success = true, Message = "List of all Stores", 
+                                Stores = this.mapper.Map<IEnumerable<StoreDTO>>(result).ToList()} );
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                //return StatusCode(500);
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
 
+        /// <summary>
+        /// Permite recuperar las propiedades de una Tienda mediante su Id
+        /// </summary>
+        /// <param name="id">Identificador de la Tienda a recuperar</param>
+        /// <returns>Una instancia de Tienda o un código en caso de error</returns>
         [HttpGet("{id}")]
         public ActionResult<StoreDTO> Get(string id)
         {
             try
             {
                 var result = this.service.Get(id);
-                return this.mapper.Map<StoreDTO>(result);
+//                return this.mapper.Map<StoreDTO>(result);
+                return Ok(new { Success = true, Message = "Store Obtained!", 
+                        Store = this.mapper.Map<StoreDTO>(result) });
             }
             catch (Exception)
             {
-                return StatusCode(500);
+//                return StatusCode(500);
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
-        }
-
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody] StoreDTO value)
-        {
-            var store = this.service.Get(id);
-            TryValidateModel(value);
-            this.mapper.Map<StoreDTO, Store>(value, store);
-            this.service.Update(store);
         }
 
         /// <summary>
-        /// Permite borrar una instancia
+        /// Permite actualizar las propiedades de una Tienda
         /// </summary>
-        /// <param name="id">Identificador de la instancia a borrar</param>
-        [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        /// <param name="id">Identificador de la Tienda a actualizar</param>
+        /// <param name="value">Propiedades de la Tienda</param>
+        /// <returns>Exito o Error y la Tienda que se intentó actualizar</returns>
+        [HttpPut("{id}")]
+        public ActionResult Put(string id, [FromBody] StoreDTO value)
         {
-            try {
-                var store = this.service.Get(id);
+            TryValidateModel(value);
 
-                this.service.Delete(store);
-                return Ok(new { Success = true, Message = "", data = id });
-            } catch {
-                return Ok(new { Success = false, Message = "", data = id });
+            var store = this.service.Get(id);
+            try
+            {
+                this.mapper.Map<StoreDTO, Store>(value, store);
+                this.service.Update(store);
+                return Ok(new { Success = true, Message = "Store Updated!", Store = store });
+            }
+            catch
+            {
+                return Ok(new { Success = false, 
+                                Message = "The name is already in use!!!", Store = store });
             }
         }
 
+        /// <summary>
+        /// Permite borrar una Tienda
+        /// </summary>
+        /// <param name="id">Identificador de la Tienda a borrar</param>
+        /// <returns>Exito y el Id de la Tienda eliminada o un codigo en caso de error</returns>
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
+        {
+            var store = this.service.Get(id);
+
+            try
+            {          
+                this.service.Delete(store);
+                return Ok(new { Success = true, Message = "Store Deleted!", data = id });
+            }
+            catch
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+            //this.service.Delete(store);
+            //return Ok(new { Success = true, Message = "", data = id });
+        }
+
+        /// <summary>
+        /// Permite realizar la búsqueda de Tiendas
+        /// </summary>
+        /// <param name="model">Objeto que contiene los parametros de Busquesda</param>
+        /// <returns>Lista de las Tiendas filtradas</returns>
         [HttpPost("search")]
         public ActionResult Search([FromBody] StoreSearchDTO model)
         {
@@ -117,7 +169,9 @@ namespace Stock.Api.Controllers
             }
 
             var stores = this.service.Search(filter);
-            return Ok(stores);
+//            return Ok(stores);
+            return Ok(new {Success = true, Message = "List of all Stores", 
+                            Stores = stores} );
         }
     }
 }

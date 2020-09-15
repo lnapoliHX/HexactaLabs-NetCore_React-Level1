@@ -17,11 +17,16 @@ export function update(store) {
     dispatch(setLoading(true));
     return api
       .put(`/store/${store.id}`, store)
-      .then(() => {
-        toast.success("La tienda se editó con éxito");
-        dispatch(success(store));
-        dispatch(setLoading(false));
-        return dispatch(goBack());
+      .then(response => {
+        if (response.data.success) {
+          toast.success("La tienda se editó con éxito");
+          dispatch(success(response.data.store));
+          dispatch(setLoading(false));
+          return dispatch(goBack()); 
+        } else {
+          toast.error("La tienda ya existe.");
+          return dispatch(setLoading(false));  
+        }
       })
       .catch(error => {
         apiErrorToast(error);
