@@ -4,7 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> 2fad48e785f6f26f8fd8c9d3214334d4383693bc
 using Stock.Api.DTOs;
 using Stock.Api.Extensions;
 using Stock.AppService.Services;
