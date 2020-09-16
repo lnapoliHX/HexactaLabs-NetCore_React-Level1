@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ElementRemove = ({ remove, goBack }) => {
   return (
     <Modal isOpen>
-      <ModalHeader>Eliminar tipo de producto</ModalHeader>
+      <ModalHeader>Eliminar categoría </ModalHeader>
       <ModalBody>¿Desea eliminar esta categoría?</ModalBody>
       <ModalFooter>
         <Button color="danger" onClick={remove}>
