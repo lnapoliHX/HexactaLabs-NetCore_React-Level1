@@ -32,7 +32,7 @@ export function remove(id) {
 
         dispatch(success(id));
         dispatch(setLoading(false));
-        toast.success("Se eliminó el tipo de producto con éxito");
+        toast.success("Se eliminó la categoría con éxito");
         
         return dispatch(replace("/producttype"));
       })

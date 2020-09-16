@@ -32,7 +32,7 @@ export function create(producttype) {
 
         dispatch(success(response.data.data));
         dispatch(setLoading(false));
-        toast.success("El tipo de producto se creó con éxito");
+        toast.success("La categoría se creó con éxito");
         
         return dispatch(replace("/producttype"));
       })

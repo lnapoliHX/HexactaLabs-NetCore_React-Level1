@@ -18,7 +18,7 @@ export function update(producttype) {
     return api
       .put(`/producttype/${producttype.id}`, producttype)
       .then(() => {
-        toast.success("El producttype se editó con éxito");
+        toast.success("La categoría se editó con éxito");
         dispatch(success(producttype));
         dispatch(setLoading(false));
         return dispatch(goBack());
