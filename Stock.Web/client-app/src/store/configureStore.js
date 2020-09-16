@@ -7,7 +7,7 @@ import { reducer as formReducer } from "redux-form";
 import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
-import product from "../modules/products";
+import productTypes from "../modules/productTypes";
 import store from "../modules/stores";
 
 export default function configureStore(history, initialState) {
@@ -17,7 +17,7 @@ export default function configureStore(history, initialState) {
     auth,
     home,
     provider,
-    product,
+    productTypes,
     store
   };
 

@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import HomePage from "../home/container/HomePage";
 import LoginPage from "../auth/containers/LoginPage";
 import ProviderPage from "../providers/page";
-import ProductPage from "../products/page";
+import ProductTypesPage from "../productTypes/page";
 import LogoutPage from "../auth/containers/LogoutPage";
 import StorePage from "../stores/page";
 
@@ -24,7 +24,7 @@ const App = props => (
     <Layout {...props}>
       <Route exact path="/" component={HomePage} />
       <Route path="/provider" component={ProviderPage} />
-      <Route path="/product" component={ProductPage} />
+      <Route path="/productTypes" component={ProductTypesPage} />
       <Route path="/logout" component={LogoutPage} />
       <Route path="/store" component={StorePage} />
     </Layout>
