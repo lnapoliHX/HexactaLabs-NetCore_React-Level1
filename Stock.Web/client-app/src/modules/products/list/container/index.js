@@ -35,7 +35,7 @@ class ProductsPage extends React.Component {
 
     return (
       <Presentation
-        data={stores}
+        data={products}
         dataLoading={loading}
         defaultPageSize={5}
         filters={this.state}

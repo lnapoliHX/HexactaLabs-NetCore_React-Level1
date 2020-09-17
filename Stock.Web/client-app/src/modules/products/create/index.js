@@ -22,7 +22,7 @@ export function create(product) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .post(`/product/`, product)
+      .post(`/producttype/`, product)
       .then(response => {
         if (!response.data.success) {
           var error = {response: {data: {Message: response.data.message}}};
@@ -34,7 +34,7 @@ export function create(product) {
         dispatch(setLoading(false));
         toast.success("El producto se creó con éxito");
         
-        return dispatch(replace("/product"));
+        return dispatch(replace("/producttype"));
       })
       .catch(error => {
         return handleError(dispatch, error);

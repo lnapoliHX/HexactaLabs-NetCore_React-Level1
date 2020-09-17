@@ -91,7 +91,7 @@ export function getAll() {
   return dispatch => {
     dispatch(setLoading(true));
     return api
-      .get("/product")
+      .get("/producttype")
       .then(response => {
         dispatch(setProducts(response.data));
         return dispatch(setLoading(false));
@@ -110,7 +110,7 @@ export function getById(id) {
 export function fetchByFilters(filters) {
   return function(dispatch) {
     return api
-      .post("/product/search", pickBy(filters))
+      .post("/producttype/search", pickBy(filters))
       .then(response => {
         dispatch(setProducts(response.data));
       })
