@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import PropTypes from "prop-types";
-import { getProductsTypes, getAll, fetchByFilters } from "../index";
+import { getProductsTypes, getAll } from "../index";
 import Presentation from "../presentation";
 
 class ProductTypePage extends React.Component {
