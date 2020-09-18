@@ -35,3 +35,7 @@ $tf/
 
 #Litedb File
 Stock.Api/*.db
+.github/
+.vscode/
+Stock.Web/client-app/.vscode/
+Stock.Web/client-app/.vscode/launch.json
