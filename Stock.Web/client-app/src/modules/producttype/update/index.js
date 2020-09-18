@@ -1,25 +1,25 @@
-import { toast } from "react-toastify";
-import { goBack } from "connected-react-router";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { setLoading, ActionTypes } from "../list";
+import { toast } from "react-toastify";
+import { goBack } from "connected-react-router";
 
 /* Actions */
-function success(store) {
+function success(provider) {
   return {
     type: ActionTypes.UPDATE,
-    store
+    provider
   };
 }
 
-export function update(store) {
+export function update(provider) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .put(`/producttype/${store.id}`, store)
+      .put(`/producttype/${provider.id}`, provider)
       .then(() => {
         toast.success("La categoría se editó con éxito");
-        dispatch(success(store));
+        dispatch(success(provider));
         dispatch(setLoading(false));
         return dispatch(goBack());
       })

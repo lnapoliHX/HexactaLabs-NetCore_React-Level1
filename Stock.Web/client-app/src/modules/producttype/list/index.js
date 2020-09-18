@@ -1,19 +1,21 @@
-import { pickBy } from "lodash";
+import { cloneDeep, pickBy } from "lodash";
+import { normalize } from "../../../common/helpers/normalizer";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 
 const initialState = {
   loading: false,
-  stores: []
+  ids: [],
+  byId: {}
 };
 
 /* Action types */
 
-const LOADING = "STORES_LOADING";
-const SET = "STORES_SET";
-const CREATE = "STORES_CREATE";
-const UPDATE = "STORES_UPDATE";
-const REMOVE = "STORES_REMOVE";
+const LOADING = "PROVIDERS_LOADING";
+const SET = "PROVIDERS_SET";
+const CREATE = "PROVIDERS_CREATE";
+const UPDATE = "PROVIDERS_UPDATE";
+const REMOVE = "PROVIDERS_REMOVE";
 
 export const ActionTypes = {
   LOADING,
@@ -31,40 +33,52 @@ function handleLoading(state, { loading }) {
   };
 }
 
-function handleSet(state, { stores }) {
+function handleSet(state, { providers }) {
   return {
     ...state,
-    stores
+    ids: providers.map(provider => provider.id),
+    byId: normalize(providers)
   };
 }
 
-function handleNewStore(state, { store }) {
+function handleNewProvider(state, { provider }) {
   return {
     ...state,
-    stores: state.stores.concat(store)
+    ids: state.ids.concat([provider.id]),
+    byId: {
+      ...state.byId,
+      [provider.id]: cloneDeep(provider)
+    }
   };
 }
 
-function handleUpdateStore(state, { store }) {
+function handleUpdateProvider(state, { provider }) {
   return {
     ...state,
-    stores: state.stores.map(s => (s.id === store.id ? store : s))
+    byId: { ...state.byId, [provider.id]: cloneDeep(provider) }
   };
 }
 
-function handleRemoveStore(state, { id }) {
+function handleRemoveProvider(state, { id }) {
   return {
     ...state,
-    stores: state.stores.filter(s => s.id !== id)
+    ids: state.ids.filter(providerId => providerId !== id),
+    byId: Object.keys(state.byId).reduce(
+      (acc, providerId) =>
+        providerId !== `${id}`
+          ? { ...acc, [providerId]: state.byId[providerId] }
+          : acc,
+      {}
+    )
   };
 }
 
 const handlers = {
   [LOADING]: handleLoading,
   [SET]: handleSet,
-  [CREATE]: handleNewStore,
-  [UPDATE]: handleUpdateStore,
-  [REMOVE]: handleRemoveStore
+  [CREATE]: handleNewProvider,
+  [UPDATE]: handleUpdateProvider,
+  [REMOVE]: handleRemoveProvider
 };
 
 export default function reducer(state = initialState, action) {
@@ -80,10 +94,10 @@ export function setLoading(status) {
   };
 }
 
-export function setStores(stores) {
+export function setProviders(providers) {
   return {
     type: SET,
-    stores
+    providers
   };
 }
 
@@ -93,7 +107,7 @@ export function getAll() {
     return api
       .get("/producttype")
       .then(response => {
-        dispatch(setStores(response.data));
+        dispatch(setProviders(response.data));
         return dispatch(setLoading(false));
       })
       .catch(error => {
@@ -110,9 +124,9 @@ export function getById(id) {
 export function fetchByFilters(filters) {
   return function(dispatch) {
     return api
-      .post("/producttype/search", pickBy(filters))
+      .post("/provider/search", pickBy(filters))
       .then(response => {
-        dispatch(setStores(response.data));
+        dispatch(setProviders(response.data));
       })
       .catch(error => {
         apiErrorToast(error);
@@ -122,17 +136,36 @@ export function fetchByFilters(filters) {
 
 /* Selectors */
 function base(state) {
-  return state.store.list;
+  return state.provider.list;
 }
 
 export function getLoading(state) {
   return base(state).loading;
 }
 
-export function getStores(state) {
-  return base(state).stores;
+export function getProvidersById(state) {
+  return base(state).byId;
 }
 
-export function getStoreById(state, id) {
-  return getStores(state).find(s => s.id === id);
+export function getProviderIds(state) {
+  return base(state).ids;
 }
+
+export function getProviderById(state, id) {
+  return getProvidersById(state)[id] || {};
+}
+
+function makeGetProvidersMemoized() {
+  let cache;
+  let value = [];
+  return state => {
+    if (cache === getProvidersById(state)) {
+      return value;
+    }
+    cache = getProvidersById(state);
+    value = Object.values(getProvidersById(state));
+    return value;
+  };
+}
+
+export const getProviders = makeGetProvidersMemoized();

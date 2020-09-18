@@ -2,63 +2,53 @@ import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import PropTypes from "prop-types";
-import { getStores, getAll, fetchByFilters } from "../index";
+import { getProviders, getAll, fetchByFilters } from "../index";
 import Presentation from "../presentation";
 
-const initialState = {
-  name: "",
-  address: "",
-  condition: "AND"
-};
-
-class StoresPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...initialState };
+class ProvidersPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      filters: {
+        initials: "",
+        description: "",
+        condition: "AND"
+      }
+    };
   }
 
-  onFilterChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  onFilterSubmit = () => {
-    this.props.fetchByFilters(this.state);
-  };
-
-  onFilterReset = () => {
-    this.setState({ ...initialState });
-    this.props.getAll();
+  filterChanged = event => {
+    const newFilters = {
+      ...this.state.filters,
+      [event.target.name]: event.target.value
+    };
+    this.setState({ filters: newFilters });
   };
 
   render() {
-    const { stores, loading, ...rest } = this.props;
-
     return (
       <Presentation
-        data={stores}
-        dataLoading={loading}
+        data={this.props.providers}
+        dataLoading={this.props.loading}
         defaultPageSize={5}
-        filters={this.state}
-        onFilterChange={this.onFilterChange}
-        onFilterSubmit={this.onFilterSubmit}
-        clearFilter={this.onFilterReset}
-        {...rest}
+        filters={this.state.filters}
+        handleFilter={this.filterChanged}
+        submitFilter={() => this.props.fetchByFilters(this.state.filters)}
+        clearFilter={this.props.getAll}
+        {...this.props}
       />
     );
   }
 }
 
-StoresPage.propTypes = {
-  stores: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-  getAll: PropTypes.func.isRequired,
-  push: PropTypes.func.isRequired,
-  fetchByFilters: PropTypes.func.isRequired
+ProvidersPage.propTypes = {
+  providers: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => ({
-  stores: getStores(state)
-});
+const mapStateToProps = state => {
+  return { providers: getProviders(state) };
+};
 
 const mapDispatchToProps = {
   getAll,
@@ -69,4 +59,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(StoresPage);
+)(ProvidersPage);

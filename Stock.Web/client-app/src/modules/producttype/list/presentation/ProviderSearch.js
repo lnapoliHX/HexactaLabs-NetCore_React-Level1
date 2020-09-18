@@ -9,24 +9,24 @@ const Search = props => {
       <h4>Búsqueda</h4>
       <Row>
         <Col>
-          <Input
-            name="initials"
-            id="initialsInput"
-            type="text"
-            onChange={props.handleFilter}
-            value={props.filters.name}
-            placeholder="Iniciales"
-          />
+		<Input
+					name="initials"
+					id="initialsInput"
+					type="text"
+					onChange={props.handleFilter}
+					value={props.filters.name}
+					placeholder="Iniciales"
+				/>
         </Col>
         <Col>
-          <Input
-            name="description"
-            id="descriptionInput"
-            type="text"
-            onChange={props.handleFilter}
-            value={props.filters.address}
-            placeholder="Descripción"
-          />
+		<Input
+					name="description"
+					id="descriptionInput"
+					type="text"
+					onChange={props.handleFilter}
+					value={props.filters.email}
+					placeholder="Descripción"
+				/>
         </Col>
         <Col>
           <Button color="primary" onClick={props.submitFilter}>

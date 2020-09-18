@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import PropTypes from "prop-types";
 
 const ElementRemove = ({ remove, goBack }) => {
   return (
@@ -24,6 +24,6 @@ ElementRemove.propTypes = {
   goBack: PropTypes.func.isRequired
 };
 
-ElementRemove.displayName = "StoreRemove";
+ElementRemove.displayName = "ProviderRemove";
 
 export default ElementRemove;

@@ -1,17 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goBack } from "connected-react-router";
-import { Container, Row, Col } from "reactstrap";
-import { getStoreById } from "../../list";
+import PropTypes from "prop-types";
+import { getProviderById } from "../../list";
 import { update } from "..";
 import Form from "../../form/presentation";
+import { Container, Row, Col } from "reactstrap";
 
 const Update = ({ initialValues, update: onSubmit, goBack: onCancel }) => {
   return (
     <Container fluid>
       <Row>
-        <h2>Edición</h2>
+          <Col>
+            <div className="block-header">
+                <h1>Edición</h1>
+            </div>
+        </Col>
       </Row>
       <Row>
         <Col>
@@ -33,7 +37,7 @@ Update.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  initialValues: getStoreById(state, ownProps.match.params.id)
+  initialValues: getProviderById(state, ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {

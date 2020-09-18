@@ -1,24 +1,25 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 
+import PropTypes from "prop-types";
+
 const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link className="store-list__button" to={`/producttype/view/${value}`}>
-      <FaSearch className="store-list__button-icon" />
+    <Link className="provider-list__button" to={`/producttype/view/${value}`}>
+      <FaSearch className="provider-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link className="store-list__button" to={`/producttype/update/${value}`}>
-      <FaEdit className="store-list__button-icon" />
+    <Link className="provider-list__button" to={`/producttype/update/${value}`}>
+      <FaEdit className="provider-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link className="store-list__button" to={`/producttype/remove/${value}`}>
-      <FaTrash className="store-list__button-icon" />
+    <Link className="provider-list__button" to={`/producttype/remove/${value}`}>
+      <FaTrash className="provider-list__button-icon" />
     </Link>
   );
 
@@ -31,14 +32,11 @@ const renderToolbar = ({ value }) => {
 
 const HeaderComponent = props => {
   return (
-    <div
-      style={{
-        textAlign: "left",
-        fontWeight: "bold"
-      }}
+	<h2 
+	className="tableHeading"
     >
       {props.title}
-    </div>
+    </h2>
   );
 };
 

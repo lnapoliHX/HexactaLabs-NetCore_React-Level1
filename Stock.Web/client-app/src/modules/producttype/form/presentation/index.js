@@ -6,17 +6,17 @@ import Validator from "../../../../common/helpers/YupValidator";
 import InputField from "../../../../components/inputs/InputField";
 import schema from "../validation";
 
-const ProductTypeForm = props => {
+const ProviderForm = props => {
   const { handleSubmit, handleCancel } = props;
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="addForm">
       <Field label="Iniciales" name="initials" component={InputField} type="text" />
       <Field label="Descripción" name="description" component={InputField} type="text" />
-      <Button className="store-form__button" color="primary" type="submit">
+      <Button className="provider-form__button" color="primary" type="submit">
         Guardar
       </Button>
       <Button
-        className="store-form__button"
+        className="provider-form__button"
         color="secondary"
         type="button"
         onClick={handleCancel}
@@ -27,7 +27,7 @@ const ProductTypeForm = props => {
   );
 };
 
-ProductTypeForm.propTypes = {
+ProviderForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired
 };
@@ -36,4 +36,4 @@ export default reduxForm({
   form: "provider",
   validate: Validator(schema),
   enableReinitialize: true
-})(ProductTypeForm);
+})(ProviderForm);

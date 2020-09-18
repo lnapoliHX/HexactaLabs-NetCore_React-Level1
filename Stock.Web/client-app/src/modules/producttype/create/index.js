@@ -5,10 +5,10 @@ import { setLoading, ActionTypes } from "../list";
 import { toast } from "react-toastify";
 
 /* Actions */
-function success(store) {
+function success(provider) {
   return {
     type: ActionTypes.CREATE,
-    store
+    provider
   };
 }
 
@@ -18,11 +18,11 @@ function handleError(dispatch, error) {
   return dispatch(setLoading(false));
 }
 
-export function create(producttype) {
+export function create(provider) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .post(`/producttype/`, producttype)
+      .post(`/producttype/`, provider)
       .then(response => {
         if (!response.data.success) {
           var error = {response: {data: {Message: response.data.message}}};
