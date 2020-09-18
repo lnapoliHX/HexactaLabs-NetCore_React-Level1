@@ -5,20 +5,16 @@ import { Container, Row, Col, Button } from "reactstrap";
 const StoreView = props => {
   return (
     <Container fluid>
-      <h1>{props.store.name}</h1>
+      <h1>{props.store.initials}</h1>
       <Row>
-        <Col lg="2">Dirección</Col>
-        <Col>{props.store.address}</Col>
+        <Col lg="2">Descripción</Col>
+        <Col>{props.store.description}</Col>
       </Row>
-      <Row>
-        <Col lg="2">Teléfono</Col>
-        <Col>{props.store.phone}</Col>
-      </Row>
-      <div className="provider-view__button-row">
+      <div className="store-view__button-row">
         <Button
           className="store-form__button"
           color="primary"
-          onClick={() => props.push(`/store/update/${props.match.params.id}`)}
+          onClick={() => props.push(`/producttype/update/${props.match.params.id}`)}
         >
           Editar
         </Button>
@@ -26,7 +22,7 @@ const StoreView = props => {
           className="store-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/store/view/${props.match.params.id}/remove`)
+            props.push(`/producttype/view/${props.match.params.id}/remove`)
           }
         >
           Eliminar
@@ -34,7 +30,7 @@ const StoreView = props => {
         <Button
           className="store-form__button"
           color="default"
-          onClick={() => props.push(`/store`)}
+          onClick={() => props.push(`/producttype`)}
         >
           Volver
         </Button>
