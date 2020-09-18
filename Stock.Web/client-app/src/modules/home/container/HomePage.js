@@ -6,6 +6,7 @@ import Spinner from "../../../components/loading/spinner";
 import PropTypes from "prop-types";
 
 class HomePage extends React.Component {
+
   componentDidMount() {
     //TODO: could use "useEffect"
     this.props.load();
