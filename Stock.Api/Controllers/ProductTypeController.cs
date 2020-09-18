@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stock.Api.DTOs;
+using Stock.Api.Extensions;
 using Stock.AppService.Services;
 using Stock.Model.Entities;
 using System;
@@ -31,7 +32,14 @@ namespace Stock.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProductTypeDTO>> Get()
         {
-            return this.mapper.Map<IEnumerable<ProductTypeDTO>>(this.service.GetAll()).ToList();
+            try
+            {
+                return this.mapper.Map<IEnumerable<ProductTypeDTO>>(this.service.GetAll()).ToList();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         /// <summary>
@@ -42,7 +50,14 @@ namespace Stock.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductTypeDTO> Get(string id)
         {
+            try
+            {
             return this.mapper.Map<ProductTypeDTO>(this.service.Get(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         /// <summary>
@@ -98,6 +113,33 @@ namespace Stock.Api.Controllers
             } catch {
                 return Ok(new { Success = false, Message = "", data = id });
             }
+        }
+
+        /// <summary>
+        /// Permite recuperar ProductType aplicando filtros
+        /// </summary>
+        /// <returns>Una colección de ProductType</returns>
+        [HttpPost("search")]
+        public ActionResult Search([FromBody] ProductTypeSearchDTO model)
+        {
+            Expression<Func<ProductType, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
+
+            if (!string.IsNullOrWhiteSpace(model.Initials))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Initials.ToUpper().Contains(model.Initials.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Description))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Description.ToUpper().Contains(model.Description.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            var providers = this.service.Search(filter);
+            return Ok(providers);
         }
     }
 }
