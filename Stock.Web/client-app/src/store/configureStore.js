@@ -7,6 +7,7 @@ import { reducer as formReducer } from "redux-form";
 import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
+import producttype from "../modules/productTypes";
 import store from "../modules/stores";
 
 export default function configureStore(history, initialState) {
@@ -16,7 +17,8 @@ export default function configureStore(history, initialState) {
     auth,
     home,
     provider,
-    store
+    producttype,
+    store,
   };
 
   const middleware = [thunk, routerMiddleware(history)];
@@ -38,9 +40,6 @@ export default function configureStore(history, initialState) {
   return createStore(
     rootReducer,
     initialState,
-    compose(
-      applyMiddleware(...middleware),
-      ...enhancers
-    )
+    compose(applyMiddleware(...middleware), ...enhancers)
   );
 }
