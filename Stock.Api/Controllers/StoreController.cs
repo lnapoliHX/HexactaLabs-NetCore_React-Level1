@@ -97,6 +97,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar Stores aplicando filtros
+        /// </summary>
+        /// <returns>Una colección de Stores</returns>
         [HttpPost("search")]
         public ActionResult Search([FromBody] StoreSearchDTO model)
         {
