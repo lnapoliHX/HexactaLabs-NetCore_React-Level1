@@ -14,7 +14,7 @@ const StoreView = props => {
         <Col lg="2">Teléfono</Col>
         <Col>{props.store.phone}</Col>
       </Row>
-      <div className="store-view__button-row">
+      <div className="provider-view__button-row">
         <Button
           className="store-form__button"
           color="primary"
