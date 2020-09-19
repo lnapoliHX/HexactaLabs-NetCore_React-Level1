@@ -25,6 +25,10 @@ namespace Stock.Api.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Permite crear un nuevo provider
+        /// </summary>
+        /// <param name="value">Una instancia</param>
         [HttpPost]
         public ActionResult Post([FromBody] ProviderDTO value)
         {
@@ -43,6 +47,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar todos los provider
+        /// </summary>
+        /// <returns>Una colección de instancias</returns>
         [HttpGet]
         public ActionResult<IEnumerable<ProviderDTO>> Get()
         {
@@ -57,6 +65,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar todos los provider
+        /// </summary>
+        /// <returns>Una colección de instancias</returns> 
         [HttpGet("{id}")]
         public ActionResult<ProviderDTO> Get(string id)
         {
@@ -71,6 +83,12 @@ namespace Stock.Api.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Permite editar un provider
+        /// </summary>
+        /// <param name="id">Identificador del provider a editar</param>
+        /// <param name="value">Un provider con los nuevos datos</param>
         [HttpPut("{id}")]
         public void Put(string id, [FromBody] ProviderDTO value)
         {
@@ -99,6 +117,11 @@ namespace Stock.Api.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Permite buscar un provider
+        /// </summary>
+        /// <param name="model">Identificador del provider a buscar</param>
         [HttpPost("search")]
         public ActionResult Search([FromBody] ProviderSearchDTO model)
         {

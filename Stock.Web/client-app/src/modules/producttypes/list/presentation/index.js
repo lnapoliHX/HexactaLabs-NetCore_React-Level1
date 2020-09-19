@@ -4,14 +4,16 @@ import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
 import columns from "./ColumnsConfig";
-import Search from "./StoreSearch";
+import Search from "./ProducttypeSearch"; 
+
+
 
 const Presentation = props => {
   return (
     <Container fluid>
       <Row className="my-1">
         <Col>
-          <h1>Tiendas</h1>
+          <h1>Categorías</h1>
         </Col>
       </Row>
       <Row>
@@ -27,11 +29,11 @@ const Presentation = props => {
       <Row className="my-1">
         <Col>
           <Button
-            className="store__button"
+            className="producttype__button"
             color="primary"
             onClick={() => props.push(props.urls.create)}
           >
-            <FaPlus className="store__button-icon" />
+            <FaPlus className="producttype__button-icon" />
             AGREGAR
           </Button>
         </Col>

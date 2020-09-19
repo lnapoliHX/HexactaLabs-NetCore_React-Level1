@@ -5,15 +5,19 @@ import { Container, Row, Col, Button } from "reactstrap";
 const StoreView = props => {
   return (
     <Container fluid>
+      <div className="block-header">
       <h1>{props.store.name}</h1>
-      <Row>
-        <Col lg="2">Dirección</Col>
-        <Col>{props.store.address}</Col>
-      </Row>
-      <Row>
-        <Col lg="2">Teléfono</Col>
-        <Col>{props.store.phone}</Col>
-      </Row>
+      </div>
+      <div className="info-box">
+        <Row>
+          <Col lg="2">Dirección</Col>
+          <Col>{props.store.address}</Col>
+        </Row>
+        <Row>
+          <Col lg="2">Teléfono</Col>
+          <Col>{props.store.phone}</Col>
+        </Row>
+        </div>
       <div className="store-view__button-row">
         <Button
           className="store-form__button"
