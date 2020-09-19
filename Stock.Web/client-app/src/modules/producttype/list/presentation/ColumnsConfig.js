@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link className="provider-list__button" to={`/producttype/view/${value}`}>
+    <Link className="producttype-list__button" to={`/producttype/view/${value}`}>
       <FaSearch className="producttype-list__button-icon" />
     </Link>
   );
