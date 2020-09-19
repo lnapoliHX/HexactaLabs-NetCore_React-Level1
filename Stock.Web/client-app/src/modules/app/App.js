@@ -8,30 +8,32 @@ import LoginPage from "../auth/containers/LoginPage";
 import ProviderPage from "../providers/page";
 import LogoutPage from "../auth/containers/LogoutPage";
 import StorePage from "../stores/page";
+import ProductTypePage from "../producttype/page";
 
 import PropTypes from "prop-types";
 
-const Private = props => {
+const Private = (props) => {
   if (localStorage.getItem("JWT_LOGIN")) {
     return props.children;
   }
   return <LoginPage />;
 };
 
-const App = props => (
+const App = (props) => (
   <Private>
     <Layout {...props}>
       <Route exact path="/" component={HomePage} />
       <Route path="/provider" component={ProviderPage} />
       <Route path="/logout" component={LogoutPage} />
       <Route path="/store" component={StorePage} />
+      <Route path="/producttype" component={ProductTypePage} />
     </Layout>
     <ToastContainer autoClose={2000} />
   </Private>
 );
 
 Private.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.array,
 };
 
 App.displayName = "App";
