@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stock.Api.DTOs;
+using Stock.Api.Extensions;
 using Stock.AppService.Services;
 using Stock.Model.Entities;
 using System;
@@ -98,6 +99,27 @@ namespace Stock.Api.Controllers
             } catch {
                 return Ok(new { Success = false, Message = "", data = id });
             }
+        }
+
+
+        /// <summary>
+        /// Permite buscar un tipo de producto
+        /// </summary>
+        /// <param name="model">Identificador del tipo de producto a buscar</param>
+        [HttpPost("search")]
+        public ActionResult Search([FromBody] ProductTypeSearchDTO model)
+        {
+            Expression<Func<ProductType, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
+
+            if (!string.IsNullOrWhiteSpace(model.Description))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Description.ToUpper().Contains(model.Description.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            var producttypes = this.service.Search(filter);
+            return Ok(producttypes);
         }
     }
 }

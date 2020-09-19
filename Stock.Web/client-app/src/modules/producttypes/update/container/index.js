@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goBack } from "connected-react-router";
 import { Container, Row, Col } from "reactstrap";
-import { getStoreById } from "../../list";
+import { getProducttypeById } from "../../list";
 import { update } from "..";
 import Form from "../../form/presentation";
 
@@ -11,9 +11,9 @@ const Update = ({ initialValues, update: onSubmit, goBack: onCancel }) => {
   return (
     <Container fluid>
       <Row>
-      <div className="block-header">
-        <h2>Edición</h2>
-      </div>
+        <div className="block-header">
+          <h2>Edición</h2>
+        </div>  
       </Row>
       <Row>
         <Col>
@@ -35,7 +35,7 @@ Update.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  initialValues: getStoreById(state, ownProps.match.params.id)
+  initialValues: getProducttypeById(state, ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {
