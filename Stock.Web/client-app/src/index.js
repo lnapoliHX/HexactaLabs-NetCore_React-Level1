@@ -38,12 +38,13 @@ const menu_factory = (title, to, icon, children = []) => ({
   title,
   to,
   icon,
-  children
+  children,
 });
 
 const menu = [
   menu_factory("Proveedor", "/provider", "algun-icon"),
-  menu_factory("Tiendas", "/store", "algun-icon")
+  menu_factory("Tiendas", "/store", "algun-icon"),
+  menu_factory("Categorias", "/producttype", "algun-icon"),
 ];
 
 ReactDOM.render(
