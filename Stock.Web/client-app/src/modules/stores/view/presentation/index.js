@@ -14,7 +14,7 @@ const StoreView = props => {
         <Col lg="2">Teléfono</Col>
         <Col>{props.store.phone}</Col>
       </Row>
-      <div className="store-view__button-row">
+      <div className="provider-view__button-row">
         <Button
           className="store-form__button"
           color="primary"
@@ -26,7 +26,7 @@ const StoreView = props => {
           className="store-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/store/view/${props.match.params.id}/remove`)
+            props.push(`/store/remove/${props.match.params.id}`)
           }
         >
           Eliminar
