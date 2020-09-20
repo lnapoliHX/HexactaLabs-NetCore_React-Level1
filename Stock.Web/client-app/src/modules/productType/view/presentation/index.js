@@ -2,34 +2,34 @@ import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
 
-const ProviderView = (props) => {
+const ProductTypeView = (props) => {
   return (
     <Container fluid>
       <div className="block-header">
-        <h1>{props.provider.name}</h1>
+        <h1>{props.productType.name}</h1>
       </div>
       <div className="info-box">
         <Row>
           <Col lg="2">Id</Col>
-          <Col>{props.provider.id}</Col>
+          <Col>{props.productType.id}</Col>
         </Row>
         <Row>
-          <Col lg="2">Email</Col>
-          <Col>{props.provider.email}</Col>
+          <Col lg="2">Initials</Col>
+          <Col>{props.productType.initials}</Col>
         </Row>
         <Row>
-          <Col lg="2">Teléfono</Col>
-          <Col>{props.provider.phone}</Col>
+          <Col lg="2">Description</Col>
+          <Col>{props.productType.description}</Col>
         </Row>
       </div>
-      <div className="provider-view__button-row">
+      <div className="ProductType-view__button-row">
         <Button
           title="Editar"
           aria-label="Editar"
-          className="provider-form__button"
+          className="ProductType-form__button"
           color="primary"
           onClick={() =>
-            props.push(`/provider/update/${props.match.params.id}`)
+            props.push(`/ProductType/update/${props.match.params.id}`)
           }
         >
           <svg
@@ -48,10 +48,10 @@ const ProviderView = (props) => {
         <Button
           title="Eliminar"
           aria-label="Eliminar"
-          className="provider-form__button"
+          className="ProductType-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/provider/view/${props.match.params.id}/remove`)
+            props.push(`/ProductType/view/${props.match.params.id}/remove`)
           }
         >
           <svg
@@ -70,9 +70,9 @@ const ProviderView = (props) => {
         <Button
           title="Volver"
           aria-label="Volver"
-          className="provider-form__button btn-outline-secondary"
+          className="ProductType-form__button btn-outline-secondary"
           color="default"
-          onClick={() => props.push(`/provider`)}
+          onClick={() => props.push(`/ProductType`)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,10 +94,10 @@ const ProviderView = (props) => {
   );
 };
 
-ProviderView.propTypes = {
-  provider: PropTypes.object.isRequired,
+ProductTypeView.propTypes = {
+  productType: PropTypes.object.isRequired,
   push: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
-export default ProviderView;
+export default ProductTypeView;
