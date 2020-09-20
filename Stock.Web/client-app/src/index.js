@@ -24,9 +24,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import { createBrowserHistory } from "history";
-import configureStore from "./store/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import App from "./modules/app/App";
+import configureStore from "./store/configureStore";
 import "react-toastify/dist/ReactToastify.css";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
@@ -43,7 +43,8 @@ const menu_factory = (title, to, icon, children = []) => ({
 
 const menu = [
   menu_factory("Proveedor", "/provider", "algun-icon"),
-  menu_factory("Tiendas", "/store", "algun-icon")
+  menu_factory("Tiendas", "/store", "algun-icon"),
+  menu_factory("Categorías", "/product-type", "algun-icon")
 ];
 
 ReactDOM.render(
