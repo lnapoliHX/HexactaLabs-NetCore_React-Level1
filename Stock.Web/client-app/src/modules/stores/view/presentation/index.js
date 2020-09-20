@@ -26,7 +26,7 @@ const StoreView = props => {
           className="store-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/store/view/${props.match.params.id}/remove`)
+            props.push(`/store/remove/${props.match.params.id}`)
           }
         >
           Eliminar
