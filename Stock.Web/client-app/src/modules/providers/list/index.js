@@ -1,7 +1,7 @@
 import { cloneDeep, pickBy } from "lodash";
 import { normalize } from "../../../common/helpers/normalizer";
-import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
+import api from "../../../common/api";
 
 const initialState = {
   loading: false,

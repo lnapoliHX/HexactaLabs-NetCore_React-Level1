@@ -5,9 +5,11 @@ import { ToastContainer } from "react-toastify";
 import Layout from "../../components/Layout";
 import HomePage from "../home/container/HomePage";
 import LoginPage from "../auth/containers/LoginPage";
-import ProviderPage from "../providers/page";
 import LogoutPage from "../auth/containers/LogoutPage";
+import ProviderPage from "../providers/page";
 import StorePage from "../stores/page";
+import ProductTypePage from "../product-type/page";
+
 
 import PropTypes from "prop-types";
 
@@ -25,6 +27,7 @@ const App = props => (
       <Route path="/provider" component={ProviderPage} />
       <Route path="/logout" component={LogoutPage} />
       <Route path="/store" component={StorePage} />
+      <Route path="/product-type" component={ProductTypePage} />
     </Layout>
     <ToastContainer autoClose={2000} />
   </Private>
