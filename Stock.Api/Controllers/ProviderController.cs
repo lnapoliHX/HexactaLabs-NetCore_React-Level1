@@ -99,6 +99,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar Provider aplicando filtros
+        /// </summary>
+        /// <returns>Una colección de Provider</returns>
         [HttpPost("search")]
         public ActionResult Search([FromBody] ProviderSearchDTO model)
         {
