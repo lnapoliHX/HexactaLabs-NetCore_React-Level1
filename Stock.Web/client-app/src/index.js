@@ -22,6 +22,7 @@ import "react-widgets/dist/css/react-widgets.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+//import { ProductType } from "react-redux";
 
 import { createBrowserHistory } from "history";
 import configureStore from "./store/configureStore";
@@ -43,7 +44,8 @@ const menu_factory = (title, to, icon, children = []) => ({
 
 const menu = [
   menu_factory("Proveedor", "/provider", "algun-icon"),
-  menu_factory("Tiendas", "/store", "algun-icon")
+  menu_factory("Tiendas", "/store", "algun-icon"),
+  menu_factory("Categorias", "/producttype", "algun-icon")
 ];
 
 ReactDOM.render(
