@@ -5,20 +5,20 @@ import { setLoading, ActionTypes } from "../list";
 import { toast } from "react-toastify";
 
 /* Actions */
-function success(provider) {
+function success(productType) {
   return {
     type: ActionTypes.CREATE,
-    provider
+    productType
   };
 }
 
-export function create(provider) {
+export function create(productType) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .post(`/provider/`, provider)
+      .post(`/producttype/`, productType)
       .then(response => {
-        toast.success("El proveedor se creó con éxito");
+        toast.success("El tipo de producto se creó con éxito");
         dispatch(success(response.data.data));
         dispatch(setLoading(false));
         return dispatch(goBack());

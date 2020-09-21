@@ -18,17 +18,17 @@ export function remove(id) {
   return function (dispatch) {
     dispatch(setLoading(true));
     return api
-      .delete(`/store/${id}`)
+      .delete(`/producttype/${id}`)
       .then(response => {
         if (response.status !== OK_STATUS) {
           toast.error(response.data.message);
           dispatch(setLoading(false));
-          return dispatch(replace("/store"));
+          return dispatch(replace("/producttype"));
         }
 
         toast.success("Se eliminó la tienda con éxito");
         dispatch(success(id));
-        dispatch(replace("/store"));
+        dispatch(replace("/producttype"));
         return dispatch(setLoading(false));
       })
       .catch(error => {

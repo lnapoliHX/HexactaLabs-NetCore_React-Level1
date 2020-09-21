@@ -40,4 +40,5 @@ namespace Stock.AppService.Base
             return entity;
         }
     }
+
 }
