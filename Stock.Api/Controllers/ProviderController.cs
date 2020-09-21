@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stock.Api.DTOs;
 using Stock.Api.Extensions;
@@ -12,7 +13,7 @@ using Stock.Model.Entities;
 namespace Stock.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/provider")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProviderController : ControllerBase
     {
@@ -25,24 +26,10 @@ namespace Stock.Api.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost]
-        public ActionResult Post([FromBody] ProviderDTO value)
-        {
-            TryValidateModel(value);
-
-            try
-            {
-                var provider = this.mapper.Map<Provider>(value);
-                this.service.Create(provider);
-                value.Id = provider.Id;
-                return Ok(new { Success = true, Message = "", data = value });
-            }
-            catch
-            {
-                return Ok(new { Success = false, Message = "The name is already in use" });
-            }
-        }
-
+        /// <summary>
+        /// Permite recuperar todas las instancias
+        /// </summary>
+        /// <returns>Una colección de instancias</returns>
         [HttpGet]
         public ActionResult<IEnumerable<ProviderDTO>> Get()
         {
@@ -53,10 +40,15 @@ namespace Stock.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
+        /// <summary>
+        /// Permite recuperar una instancia mediante un identificador
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a recuperar</param>
+        /// <returns>Una instancia</returns>
         [HttpGet("{id}")]
         public ActionResult<ProviderDTO> Get(string id)
         {
@@ -67,17 +59,55 @@ namespace Stock.Api.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody] ProviderDTO value)
+        /// <summary>
+        /// Permite crear una nueva instancia
+        /// </summary>
+        /// <param name="value">Una instancia</param>
+        [HttpPost]
+        public ActionResult Post([FromBody] ProviderDTO value)
         {
-            var provider = this.service.Get(id);
-            TryValidateModel(value);
-            this.mapper.Map<ProviderDTO, Provider>(value, provider);
-            this.service.Update(provider);
+            if (TryValidateModel(value))
+            {
+                try
+                {
+                    var provider = this.mapper.Map<Provider>(value);
+                    this.service.Create(provider);
+                    value.Id = provider.Id;
+                    return Ok(new { Success = true, Message = "", data = value });
+                }
+                catch
+                {
+                    return Ok(new { Success = false, Message = "Ups! Something Happened, Sorry" });
+                }
+            }
+            else {
+                return BadRequest("Missing Validations");
+            }
+        }
+
+        /// <summary>
+        /// Permite editar una instancia
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a editar</param>
+        /// <param name="value">Una instancia con los nuevos datos</param>
+        [HttpPut("{id}")]
+        public ActionResult Put(string id, [FromBody] ProviderDTO value)
+        {
+            if (TryValidateModel(value))
+            {
+                var provider = this.service.Get(id);
+                this.mapper.Map<ProviderDTO, Provider>(value, provider);
+                this.service.Update(provider);
+                return Ok(new { Success = true, Message = "", data = value });
+            }
+            else
+            {
+                return BadRequest("Missing Validations");
+            }
         }
 
         /// <summary>
@@ -87,18 +117,16 @@ namespace Stock.Api.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            try {
-                var provider = this.service.Get(id);
-
-                Expression<Func<Product, bool>> filter = x => x.ProviderId.Equals(id);
-
-                this.service.Delete(provider);
-                return Ok(new { Success = true, Message = "", data = id });
-            } catch {
-                return Ok(new { Success = false, Message = "", data = id });
-            }
+            var store = this.service.Get(id);
+            
+            this.service.Delete(store);
+            return Ok(new { Success = true, Message = "Delete Complete", data = id });
         }
 
+        /// <summary>
+        /// Permite encontrar una o mas instancias que coincidan con los campos de busqueda
+        /// </summary>
+        /// <param name="model">Campos de busqueda</param>
         [HttpPost("search")]
         public ActionResult Search([FromBody] ProviderSearchDTO model)
         {

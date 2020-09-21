@@ -1,11 +1,11 @@
-namespace Stock.Api.DTOs
+﻿namespace Stock.Api.DTOs
 {
     public class ProviderSearchDTO
     {
-        public string Email { get; set; }
-
         public string Name { get; set; }
 
-        public ActionDto Condition { get; set; } 
+        public string Email { get; set; }
+
+        public ActionDto Condition { get; set; }
     }
 }

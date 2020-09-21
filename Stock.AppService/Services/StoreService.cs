@@ -16,14 +16,14 @@ namespace Stock.AppService.Services
 
         public new Store Create(Store entity)
         {
-            if (this.NombreUnico(entity.Name))
+            if (this.NombreUnico<Store>(entity.Name))
             {
                 return base.Create(entity);
             }
 
             throw new System.Exception("The name is already in use");
         }
-        private bool NombreUnico(string name)
+        private bool NombreUnico<T>(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
