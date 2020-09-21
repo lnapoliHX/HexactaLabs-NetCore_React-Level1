@@ -1,18 +1,18 @@
-.store__button {
+.productType__button {
   font-size: 1em;
 }
 
-.store__button-icon {
+.productType__button-icon {
   font-size: 0.8em;
   margin-right: 4px;
 }
 
-.store-form__button,
-.store-list__button {
+.productType-form__button,
+.productType-list__button {
   margin: 0 2px 0;
 }
 
-.store-list__button {
+.productType-list__button {
   display: inline-block;
   padding: 0 5px 0;
   border: 1px solid transparent;
@@ -21,15 +21,15 @@
   color: white;
 }
 
-.store-list__button:hover {
+.productType-list__button:hover {
   color: white;
   background-color: #0069d9;
 }
 
-.store-list__button-icon {
+.productType-list__button-icon {
   margin-top: -4px;
 }
 
-.store-view__button-row {
+.productType-view__button-row {
   float: right;
 }
