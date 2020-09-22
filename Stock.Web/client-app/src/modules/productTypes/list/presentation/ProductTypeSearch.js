@@ -10,12 +10,12 @@ const Search = props => {
       <Row>
         <Col>
 		<Input
-					name="initial"
+					name="initials"
 					id="nameInput"
 					type="text"
 					onChange={props.handleFilter}
-					value={props.filters.initial}
-					placeholder="Initial"
+					value={props.filters.initials}
+					placeholder="Initials"
 				/>
         </Col>
         <Col>

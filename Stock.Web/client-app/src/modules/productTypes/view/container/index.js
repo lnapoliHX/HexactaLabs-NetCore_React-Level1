@@ -19,12 +19,12 @@ export class ProductTypesViewPage extends Component {
 }
 
 ProductTypesViewPage.propTypes = {
-  productType: PropType.object.isRequired
+  producttype: PropType.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    productType: getProductTypeById(state, ownProps.match.params.id)
+    producttype: getProductTypeById(state, ownProps.match.params.id)
   };
 };
 

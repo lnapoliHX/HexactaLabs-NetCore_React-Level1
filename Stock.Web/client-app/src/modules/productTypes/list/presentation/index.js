@@ -3,7 +3,7 @@ import columns from "./ColumnsConfig";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
-import Search from "./ProviderSearch";
+import Search from "./ProductTypeSearch";
 
 import PropTypes from "prop-types";
 

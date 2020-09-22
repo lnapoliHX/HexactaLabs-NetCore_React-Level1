@@ -10,7 +10,7 @@ const ProductTypeForm = props => {
   const { handleSubmit, handleCancel } = props;
   return (
     <Form onSubmit={handleSubmit} className="addForm">
-      <Field label="Initial" name="initial" component={InputField} type="text" />
+      <Field label="Initials" name="initials" component={InputField} type="text" />
       <Field label="Description" name="description" component={InputField} type="text" />
       <Button className="productType-form__button" color="primary" type="submit">
         Guardar

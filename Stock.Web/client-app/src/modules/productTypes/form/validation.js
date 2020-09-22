@@ -5,7 +5,6 @@ const schema = yup.object().shape({
   initial: yup.string().required(),
   description: yup
     .string()
-    .description()
     .required()
 });
 

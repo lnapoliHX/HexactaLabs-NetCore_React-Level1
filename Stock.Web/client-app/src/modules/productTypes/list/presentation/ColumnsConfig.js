@@ -43,8 +43,8 @@ HeaderComponent.displayName = "HeaderComponent";
 
 const columns = [
   {
-    Header: <HeaderComponent title="Initial" />,
-    accessor: "initial",
+    Header: <HeaderComponent title="Initials" />,
+    accessor: "initials",
     Cell: props => props.value
   },
   {
