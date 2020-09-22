@@ -25,6 +25,10 @@ namespace Stock.Api.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Permite crear una nueva instancia
+        /// </summary>
+        /// <param name="value">Una instancia</param>
         [HttpPost]
         public ActionResult Post([FromBody] StoreDTO value)
         {
@@ -43,6 +47,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar todas las instancias
+        /// </summary>
+        /// <returns>Una colección de instancias</returns>
         [HttpGet]
         public ActionResult<IEnumerable<StoreDTO>> Get()
         {
@@ -57,6 +65,11 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite recuperar una instancia mediante un identificador
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a recuperar</param>
+        /// <returns>Una instancia</returns>
         [HttpGet("{id}")]
         public ActionResult<StoreDTO> Get(string id)
         {
@@ -71,6 +84,11 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite editar una instancia
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a editar</param>
+        /// <param name="value">Una instancia con los nuevos datos</param>
         [HttpPut("{id}")]
         public void Put(string id, [FromBody] StoreDTO value)
         {
@@ -97,6 +115,10 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Permite buscar una instancia
+        /// </summary>
+        /// <param name="model">Datos ingresados para la busqueda</param>
         [HttpPost("search")]
         public ActionResult Search([FromBody] StoreSearchDTO model)
         {
