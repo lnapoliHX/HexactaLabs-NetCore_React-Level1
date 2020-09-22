@@ -44,12 +44,8 @@ const Presentation = props => {
 
 Presentation.propTypes = {
   data: PropTypes.array.isRequired,
-  filters: PropTypes.object.isRequired,
   dataLoading: PropTypes.bool.isRequired,
   defaultPageSize: PropTypes.number,
-  handleFilter: PropTypes.func.isRequired,
-  submitFilter: PropTypes.func.isRequired,
-  clearFilter: PropTypes.func.isRequired,
   urls: PropTypes.shape({ create: PropTypes.string }),
   push: PropTypes.func.isRequired
 };
