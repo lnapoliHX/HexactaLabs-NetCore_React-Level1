@@ -10,22 +10,22 @@ const Search = props => {
       <Row>
         <Col>
 		<Input
-					name="name"
-					id="nameInput"
+					name="initials"
+					id="initialsInput"
 					type="text"
 					onChange={props.handleFilter}
-					value={props.filters.name}
-					placeholder="Nombre"
+					value={props.filters.initials}
+					placeholder="Iniciales"
 				/>
         </Col>
         <Col>
 		<Input
-					name="email"
-					id="emailInput"
+					name="description"
+					id="descriptionInput"
 					type="text"
 					onChange={props.handleFilter}
-					value={props.filters.email}
-					placeholder="Email"
+					value={props.filters.description}
+					placeholder="Descripcion"
 				/>
         </Col>
         <Col>

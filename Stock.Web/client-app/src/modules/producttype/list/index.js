@@ -74,8 +74,8 @@ function handleRemoveProducttype(state, { id }) {
 }
 
 const handlers = {
-  [LOADING]: handleLoading,
-  [SET]: handleSet,
+  [LOADING]:handleLoading,
+  [SET]:    handleSet,
   [CREATE]: handleNewProducttype,
   [UPDATE]: handleUpdateProducttype,
   [REMOVE]: handleRemoveProducttype
@@ -136,7 +136,7 @@ export function fetchByFilters(filters) {
 
 /* Selectors */
 function base(state) {
-  return state.productType.list;
+  return state.producttype.list;
 }
 
 export function getLoading(state) {

@@ -28,7 +28,7 @@ class ProductstypePage extends React.Component {
   render() {
     return (
       <Presentation
-        data={this.props.providers}
+        data={this.props.productstype}
         dataLoading={this.props.loading}
         defaultPageSize={5}
         filters={this.state.filters}

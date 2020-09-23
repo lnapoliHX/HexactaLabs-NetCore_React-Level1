@@ -22,7 +22,7 @@ import "react-widgets/dist/css/react-widgets.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-//import { ProductType } from "react-redux";
+//import { Producttype } from "react-redux";
 
 import { createBrowserHistory } from "history";
 import configureStore from "./store/configureStore";

@@ -52,7 +52,7 @@ const ProducttypeView = props => {
 };
 
 ProducttypeView.propTypes = {
-  provider: PropTypes.object.isRequired,
+  producttype: PropTypes.object.isRequired,
   push: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };
