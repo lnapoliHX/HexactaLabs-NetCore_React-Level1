@@ -11,5 +11,7 @@ namespace Stock.Api.DTOs
 
         [Required]
         public string Description { get; set; }
+
+
     }
 }
