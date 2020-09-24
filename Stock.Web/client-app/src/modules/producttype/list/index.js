@@ -55,7 +55,7 @@ function handleNewProducttype(state, { producttype }) {
 function handleUpdateProducttype(state, { producttype }) {
   return {
     ...state,
-    byId: { ...state.byId, [producttype.id]: cloneDeep() }
+    byId: { ...state.byId, [producttype.id]: cloneDeep(producttype) }
   };
 }
 
