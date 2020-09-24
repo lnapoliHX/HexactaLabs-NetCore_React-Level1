@@ -1,12 +1,13 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Stock.Api.DTOs;
-using Stock.AppService.Services;
-using Stock.Model.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Stock.Api.DTOs;
+using Stock.Api.Extensions;
+using Stock.AppService.Services;
+using Stock.Model.Entities;
 
 namespace Stock.Api.Controllers
 {
@@ -81,6 +82,33 @@ namespace Stock.Api.Controllers
             this.service.Update(productType);
         }
 
+
+        /// <summary>
+        /// Permite la búsqueda de categorías
+        /// </summary>
+        [HttpPost("search")]
+        public ActionResult Search([FromBody] ProductTypeSearchDTO model)
+        {
+            Expression<Func<ProductType, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
+
+            if (!string.IsNullOrWhiteSpace(model.Initials))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Initials.ToUpper().Contains(model.Initials.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Description))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Description.ToUpper().Contains(model.Description.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            var productstype = this.service.Search(filter);
+            return Ok(productstype);
+        }
+
         /// <summary>
         /// Permite borrar una instancia
         /// </summary>
@@ -99,5 +127,8 @@ namespace Stock.Api.Controllers
                 return Ok(new { Success = false, Message = "", data = id });
             }
         }
+
+
+   
     }
 }
