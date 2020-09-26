@@ -3,7 +3,7 @@ import columns from "./ColumnsConfig";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
-import Search from "./ProductTypeSearch";
+// import Search from "./ProductTypeSearch";
 
 import PropTypes from "prop-types";
 
@@ -56,7 +56,7 @@ const Presentation = props => {
 
 Presentation.propTypes = {
   data: PropTypes.array.isRequired,
-  filters: PropTypes.object.isRequired,
+  // filters: PropTypes.object.isRequired,
   dataLoading: PropTypes.bool.isRequired,
   defaultPageSize: PropTypes.number,
   // handleFilter: PropTypes.func.isRequired,

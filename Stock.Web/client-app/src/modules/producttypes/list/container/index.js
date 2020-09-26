@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import PropTypes from "prop-types";
-import { getProductTypes, getAll, fetchByFilters } from "../index";
+import { getProductTypes, getAll/* , fetchByFilters */ } from "../index";
 import Presentation from "../presentation";
 
 class ProductTypesPage extends React.Component {
-  constructor() {
+  /* constructor() {
     super();
     this.state = {
       filters: {
@@ -15,15 +15,15 @@ class ProductTypesPage extends React.Component {
         condition: "AND"
       }
     };
-  }
+  } */
 
-  filterChanged = event => {
+  /* filterChanged = event => {
     const newFilters = {
       ...this.state.filters,
       [event.target.initials]: event.target.value
     };
     this.setState({ filters: newFilters });
-  };
+  }; */
 
   render() {
     return (
@@ -31,7 +31,7 @@ class ProductTypesPage extends React.Component {
         data={this.props.producttypes}
         dataLoading={this.props.loading}
         defaultPageSize={5}
-        filters={this.state.filters}
+        // filters={this.state.filters}
         // handleFilter={this.filterChanged}
         // submitFilter={() => this.props.fetchByFilters(this.state.filters)}
         // clearFilter={this.props.getAll}

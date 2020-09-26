@@ -33,7 +33,7 @@ ProductTypeForm.propTypes = {
 };
 
 export default reduxForm({
-  form: "provider",
+  form: "producttype",
   validate: Validator(schema),
   enableReinitialize: true
 })(ProductTypeForm);
