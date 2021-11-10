@@ -19,16 +19,14 @@ namespace Stock.Api.Extensions
  
             if (isAnd)
             {
-                return Expression.Lambda<Func<T, bool>>(
-                    Expression.AndAlso(left, right), parameter);
+                return Expression.Lambda<Func<T, bool>>(Expression.AndAlso(left, right), parameter);
             }
             else
             {
-                 return Expression.Lambda<Func<T, bool>>(
-                    Expression.Or(left, right), parameter);
+                 return Expression.Lambda<Func<T, bool>>(Expression.Or(left, right), parameter);
             }         
         }
-         private class  ReplaceExpressionVisitor : ExpressionVisitor
+        private class  ReplaceExpressionVisitor : ExpressionVisitor
         {
             private readonly Expression oldValue;
             private readonly Expression newValue;

@@ -11,6 +11,9 @@ using Stock.Model.Entities;
 
 namespace Stock.Api.Controllers
 {
+    /// <summary>
+    /// Store endpoint.
+    /// </summary>
     [Produces("application/json")]
     [Route("api/store")]
     [ApiController]
@@ -19,12 +22,22 @@ namespace Stock.Api.Controllers
         private StoreService service;
         private readonly IMapper mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreController"/> class.
+        /// </summary>
+        /// <param name="service">Store service.</param>
+        /// <param name="mapper">Mapper configurator.</param>
         public StoreController(StoreService service, IMapper mapper)
         {
-            this.service = service;
-            this.mapper = mapper;
+            this.service = service ?? throw new ArgumentException(nameof(service));
+            this.mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
 
+        /// <summary>
+        /// Adds a store.
+        /// </summary>
+        /// <param name="value">Store info.</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Post([FromBody] StoreDTO value)
         {
@@ -32,8 +45,8 @@ namespace Stock.Api.Controllers
 
             try
             {
-                var store = this.mapper.Map<Store>(value);
-                this.service.Create(store);
+                var store = mapper.Map<Store>(value);
+                service.Create(store);
                 value.Id = store.Id;
                 return Ok(new { Success = true, Message = "", data = value });
             }
@@ -43,13 +56,17 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets all stores.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<StoreDTO>> Get()
         {
             try
             {
-                var result = this.service.GetAll();
-                return this.mapper.Map<IEnumerable<StoreDTO>>(result).ToList();
+                var result = service.GetAll();
+                return mapper.Map<IEnumerable<StoreDTO>>(result).ToList();
             }
             catch (Exception)
             {
@@ -57,13 +74,18 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets a store by id.
+        /// </summary>
+        /// <param name="id">Store id.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult<StoreDTO> Get(string id)
         {
             try
             {
-                var result = this.service.Get(id);
-                return this.mapper.Map<StoreDTO>(result);
+                var result = service.Get(id);
+                return mapper.Map<StoreDTO>(result);
             }
             catch (Exception)
             {
@@ -71,32 +93,44 @@ namespace Stock.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a store.
+        /// </summary>
+        /// <param name="id">Store id.</param>
+        /// <param name="value">Store information.</param>
         [HttpPut("{id}")]
         public void Put(string id, [FromBody] StoreDTO value)
         {
-            var store = this.service.Get(id);
+            var store = service.Get(id);
             TryValidateModel(value);
-            this.mapper.Map<StoreDTO, Store>(value, store);
-            this.service.Update(store);
+            mapper.Map<StoreDTO, Store>(value, store);
+            service.Update(store);
         }
 
         /// <summary>
-        /// Permite borrar una instancia
+        /// Deletes a store.
         /// </summary>
-        /// <param name="id">Identificador de la instancia a borrar</param>
+        /// <param name="id">Store id to delete</param>
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
             try {
-                var store = this.service.Get(id);
+                var store = service.Get(id);
 
-                this.service.Delete(store);
+                service.Delete(store);
                 return Ok(new { Success = true, Message = "", data = id });
-            } catch {
+            }
+            catch
+            {
                 return Ok(new { Success = false, Message = "", data = id });
             }
         }
 
+        /// <summary>
+        /// Search some stores.
+        /// </summary>
+        /// <param name="model">Store filters.</param>
+        /// <returns></returns>
         [HttpPost("search")]
         public ActionResult Search([FromBody] StoreSearchDTO model)
         {
@@ -116,7 +150,7 @@ namespace Stock.Api.Controllers
                     model.Condition.Equals(ActionDto.AND));
             }
 
-            var stores = this.service.Search(filter);
+            var stores = service.Search(filter);
             return Ok(stores);
         }
     }
