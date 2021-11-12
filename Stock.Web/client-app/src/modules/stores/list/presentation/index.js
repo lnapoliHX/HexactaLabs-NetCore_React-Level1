@@ -10,7 +10,7 @@ const Presentation = props => {
   return (
     <Container fluid>
       <Row className="my-1">
-        <Col>
+        <Col className="col">
           <h1>Tiendas</h1>
         </Col>
       </Row>
