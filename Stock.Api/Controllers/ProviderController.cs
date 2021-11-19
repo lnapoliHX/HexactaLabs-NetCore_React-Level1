@@ -35,11 +35,11 @@ namespace Stock.Api.Controllers
                 var provider = this.mapper.Map<Provider>(value);
                 this.service.Create(provider);
                 value.Id = provider.Id;
-                return Ok(new { Success = true, Message = "", data = value });
+                return Created(Url.Action("Get", new { Id = value.Id }), value);
             }
             catch
             {
-                return Ok(new { Success = false, Message = "The name is already in use" });
+                return BadRequest(new { Success = false, Message = "The name is already in use" });
             }
         }
 
@@ -72,12 +72,13 @@ namespace Stock.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] ProviderDTO value)
+        public ActionResult Put(string id, [FromBody] ProviderDTO value)
         {
             var provider = this.service.Get(id);
             TryValidateModel(value);
             this.mapper.Map<ProviderDTO, Provider>(value, provider);
             this.service.Update(provider);
+            return NoContent();
         }
 
         /// <summary>

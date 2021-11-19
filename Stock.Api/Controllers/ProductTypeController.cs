@@ -71,7 +71,7 @@ namespace Stock.Api.Controllers
             }
             catch
             {
-                return Ok(new { Success = false, Message = "The name is already in use" });
+                return BadRequest(new { Success = false, Message = "The name is already in use" });
             }
         }
 

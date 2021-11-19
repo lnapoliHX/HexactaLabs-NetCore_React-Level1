@@ -48,11 +48,11 @@ namespace Stock.Api.Controllers
                 var store = mapper.Map<Store>(value);
                 service.Create(store);
                 value.Id = store.Id;
-                return Ok(new { Success = true, Message = "", data = value });
+                return Created(Url.Action("Get", new { Id = value.Id }), value);
             }
             catch
             {
-                return Ok(new { Success = false, Message = "The name is already in use" });
+                return BadRequest(new { Success = false, Message = "The name is already in use" });
             }
         }
 
@@ -99,12 +99,13 @@ namespace Stock.Api.Controllers
         /// <param name="id">Store id.</param>
         /// <param name="value">Store information.</param>
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] StoreDTO value)
+        public ActionResult Put(string id, [FromBody] StoreDTO value)
         {
             var store = service.Get(id);
             TryValidateModel(value);
             mapper.Map<StoreDTO, Store>(value, store);
             service.Update(store);
+            return NoContent();
         }
 
         /// <summary>
