@@ -20,7 +20,7 @@ class ProductTypesPage extends React.Component {
   filterChanged = (event) => {
     const newFilters = {
       ...this.state.filters,
-      [eve.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
     };
     this.setState({ filters: newFilters });
   };

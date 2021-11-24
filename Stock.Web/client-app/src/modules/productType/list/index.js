@@ -33,40 +33,40 @@ function handleLoading(state, { loading }) {
   };
 }
 
-function handleSet(state, { prodcutTypes }) {
+function handleSet(state, { productTypes }) {
   return {
     ...state,
-    ids: prodcutTypes.map(prodcutType => prodcutType.id),
-    byId: normalize(prodcutTypes)
+    ids: productTypes.map(productType => productType.id),
+    byId: normalize(productTypes)
   };
 }
 
-function handleNewProductType(state, { prodcutType }) {
+function handleNewProductType(state, { productType }) {
   return {
     ...state,
-    ids: state.ids.concat([prodcutType.id]),
+    ids: state.ids.concat([productType.id]),
     byId: {
       ...state.byId,
-      [prodcutType.id]: cloneDeep(prodcutType)
+      [productType.id]: cloneDeep(productType)
     }
   };
 }
 
-function handleUpdateProdcutType(state, { prodcutType }) {
+function handleUpdateproductType(state, { productType }) {
   return {
     ...state,
-    byId: { ...state.byId, [prodcutType.id]: cloneDeep(prodcutType) }
+    byId: { ...state.byId, [productType.id]: cloneDeep(productType) }
   };
 }
 
 function handleRemoveProductType(state, { id }) {
   return {
     ...state,
-    ids: state.ids.filter(prodcutTypeId => prodcutTypeId !== id),
+    ids: state.ids.filter(productTypeId => productTypeId !== id),
     byId: Object.keys(state.byId).reduce(
-      (acc, prodcutTypeId) =>
-	  prodcutTypeId !== `${id}`
-          ? { ...acc, [prodcutTypeId]: state.byId[prodcutTypeId] }
+      (acc, productTypeId) =>
+	  productTypeId !== `${id}`
+          ? { ...acc, [productTypeId]: state.byId[productTypeId] }
           : acc,
       {}
     )
@@ -77,7 +77,7 @@ const handlers = {
   [LOADING]: handleLoading,
   [SET]: handleSet,
   [CREATE]: handleNewProductType,
-  [UPDATE]: handleUpdateProdcutType,
+  [UPDATE]: handleUpdateproductType,
   [REMOVE]: handleRemoveProductType
 };
 
@@ -94,10 +94,10 @@ export function setLoading(status) {
   };
 }
 
-export function setProductTypes(prodcutTypes) {
+export function setProductTypes(productTypes) {
   return {
     type: SET,
-    prodcutTypes
+    productTypes
   };
 }
 
@@ -105,7 +105,7 @@ export function getAll() {
   return dispatch => {
     dispatch(setLoading(true));
     return api
-      .get("/prodcutType")
+      .get("/productType")
       .then(response => {
         dispatch(setProductTypes(response.data));
         return dispatch(setLoading(false));
@@ -136,7 +136,7 @@ export function fetchByFilters(filters) {
 
 /* Selectors */
 function base(state) {
-  return state.prodcutType.list;
+  return state.productType.list;
 }
 
 export function getLoading(state) {

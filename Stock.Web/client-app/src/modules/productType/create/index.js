@@ -1,5 +1,8 @@
-import api from "../../../common/api"
-import { setLoading } from "../../productType/list"
+import api from "../../../common/api";
+import { replace } from "connected-react-router";
+import { apiErrorToast } from "../../../common/api/apiErrorToast";
+import { setLoading, ActionTypes } from "../list";
+import { toast } from "react-toastify";
 
 /* Actions */
 function success(productType) {
@@ -16,8 +19,8 @@ function handleError(dispatch, error) {
 }
 
 export function create(productType) {
-  return function(dispacht) {
-	  dispacht(setLoading(true));
+  return function(dispatch) {
+	  dispatch(setLoading(true));
 	  return api
 	    .post(`/productType/`, productType)
 		.then(response => {

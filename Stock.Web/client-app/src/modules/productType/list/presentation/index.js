@@ -1,5 +1,5 @@
 import React from "react";
-import columns from "./ColumnsConfig";
+import columns from "./ColumnConfig";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
