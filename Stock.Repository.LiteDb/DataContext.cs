@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using Stock.Repository.LiteDb.Interface;
 using Stock.Repository.LiteDb.Configuration;
+using System;
 
 namespace Stock.Repository.LiteDb
 {
