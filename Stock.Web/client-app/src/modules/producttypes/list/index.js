@@ -151,7 +151,7 @@ export function getProducttypeIds(state) {
   return base(state).ids;
 }
 
-export function getProviderById(state, id) {
+export function getProducttypeById(state, id) {
   return getProducttypesById(state)[id] || {};
 }
 
@@ -168,4 +168,4 @@ function makeGetProducttypesMemoized() {
   };
 }
 
-export const getProviders = makeGetProducttypesMemoized();
+export const getProducttypes = makeGetProducttypesMemoized();
