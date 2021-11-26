@@ -136,7 +136,7 @@ export function fetchByFilters(filters) {
 
 /* Selectors */
 function base(state) {
-  return state.provider.list;
+  return state.producttype.list;
 }
 
 export function getLoading(state) {

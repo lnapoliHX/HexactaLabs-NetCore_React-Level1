@@ -15,7 +15,7 @@ const Search = props => {
 					type="text"
 					onChange={props.handleFilter}
 					value={props.filters.initials}
-					placeholder="Initials"
+					placeholder="Iniciales"
 				/>
         </Col>
         <Col>
@@ -25,7 +25,7 @@ const Search = props => {
 					type="text"
 					onChange={props.handleFilter}
 					value={props.filters.description}
-					placeholder="Email"
+					placeholder="Descripción"
 				/>
         </Col>
         <Col>

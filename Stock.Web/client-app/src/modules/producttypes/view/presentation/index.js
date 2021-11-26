@@ -6,7 +6,7 @@ const ProducttypeView = props => {
   return (
 	<Container fluid>
 		<div className="block-header">
-			<h1>{props.producttype.description}</h1>
+			<h1>{props.producttype.initials}</h1>
 		</div>
 		<div className="info-box">
 			<Row>
