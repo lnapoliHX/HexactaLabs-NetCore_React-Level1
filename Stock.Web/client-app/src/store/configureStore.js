@@ -8,6 +8,8 @@ import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
 import store from "../modules/stores";
+// modulo categorias-tipo de producto
+import producttype from "../modules/producttypes";
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -16,7 +18,8 @@ export default function configureStore(history, initialState) {
     auth,
     home,
     provider,
-    store
+    store,
+    producttype
   };
 
   const middleware = [thunk, routerMiddleware(history)];
