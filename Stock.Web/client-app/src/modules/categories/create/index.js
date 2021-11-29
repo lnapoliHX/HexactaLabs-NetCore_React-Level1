@@ -5,10 +5,10 @@ import { setLoading, ActionTypes } from "../list";
 import { toast } from "react-toastify";
 
 /* Actions */
-function success(store) {
+function success(categories) {
   return {
     type: ActionTypes.CREATE,
-    store
+    categories
   };
 }
 
@@ -18,11 +18,11 @@ function handleError(dispatch, error) {
   return dispatch(setLoading(false));
 }
 
-export function create(store) {
+export function create(categories) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .post(`/producttype/`, store)
+      .post(`/producttype/`, categories)
       .then(response => {
         if (!response.data.success) {
           var error = {response: {data: {Message: response.data.message}}};
@@ -34,7 +34,7 @@ export function create(store) {
         dispatch(setLoading(false));
         toast.success("La categoria se creó con éxito");
         
-        return dispatch(replace("/producttype"));
+        return dispatch(replace("/categories"));
       })
       .catch(error => {
         return handleError(dispatch, error);

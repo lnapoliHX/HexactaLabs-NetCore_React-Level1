@@ -13,19 +13,9 @@ const Search = props => {
             name="name"
             id="nameInput"
             type="text"
-            onChange={props.handleFilter}
+            // onChange={ props.handleFilter}
             value={props.filters.name}
             placeholder="Nombre"
-          />
-        </Col>
-        <Col>
-          <Input
-            name="address"
-            id="addressInput"
-            type="text"
-            onChange={props.handleFilter}
-            value={props.filters.address}
-            placeholder="Dirección"
           />
         </Col>
         <Col>

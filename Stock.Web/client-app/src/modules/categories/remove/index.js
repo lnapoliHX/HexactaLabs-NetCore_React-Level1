@@ -22,7 +22,7 @@ export function remove(id) {
   return function (dispatch) {
     dispatch(setLoading(true));
     return api
-      .delete(`/categories/${id}`)
+      .delete(`/producttype/${id}`)
       .then(response => {
         if (!response.data.success) {
           var error = {response: {data: {Message: response.data.message}}};

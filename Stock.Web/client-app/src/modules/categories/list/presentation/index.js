@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
 import columns from "./ColumnsConfig";
-import Search from "./StoreSearch";
+import Search from "./CategorySearch";
 
 const Presentation = props => {
   return (
@@ -12,16 +12,6 @@ const Presentation = props => {
       <Row className="my-1">
         <Col className="col">
           <h1>Categorias</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Search
-            handleFilter={props.onFilterChange}
-            submitFilter={props.onFilterSubmit}
-            clearFilter={props.clearFilter}
-            filters={props.filters}
-          />
         </Col>
       </Row>
       <Row className="my-1">
@@ -54,12 +44,8 @@ const Presentation = props => {
 
 Presentation.propTypes = {
   data: PropTypes.array.isRequired,
-  filters: PropTypes.object.isRequired,
   dataLoading: PropTypes.bool.isRequired,
   defaultPageSize: PropTypes.number,
-  onFilterChange: PropTypes.func.isRequired,
-  onFilterSubmit: PropTypes.func.isRequired,
-  clearFilter: PropTypes.func.isRequired,
   urls: PropTypes.shape({ create: PropTypes.string }),
   push: PropTypes.func.isRequired
 };

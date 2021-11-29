@@ -1,10 +1,9 @@
-import { pickBy } from "lodash";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 
 const initialState = {
   loading: false,
-  stores: []
+  categories: []
 };
 
 /* Action types */
@@ -31,31 +30,32 @@ function handleLoading(state, { loading }) {
   };
 }
 
-function handleSet(state, { stores }) {
+function handleSet(state, { categories }) {
   return {
     ...state,
-    stores
+    categories
   };
 }
 
-function handleNewCategories(state, { store }) {
+function handleNewCategories(state, { categoria }) {
   return {
     ...state,
-    stores: state.stores.concat(store)
+    categories: state.ids.concat(categoria)
+
   };
 }
 
-function handleUpdateCategories(state, { store }) {
+function handleUpdateCategories(state, { categorie }) {
   return {
     ...state,
-    stores: state.stores.map(s => (s.id === store.id ? store : s))
+    categories: state.categories.map(p => (p.id === categorie ? categorie : p))
   };
 }
 
 function handleRemoveCategories(state, { id }) {
   return {
     ...state,
-    stores: state.stores.filter(s => s.id !== id)
+    categories: state.categories.filter(p => p.id !== id)
   };
 }
 
@@ -80,10 +80,10 @@ export function setLoading(status) {
   };
 }
 
-export function setCategories(stores) {
+export function setCategories(categories) {
   return {
     type: SET,
-    stores
+    categories
   };
 }
 
@@ -107,22 +107,9 @@ export function getById(id) {
   return getAll({ id });
 }
 
-export function fetchByFilters(filters) {
-  return function(dispatch) {
-    return api
-      .post("/producttype/search", pickBy(filters))
-      .then(response => {
-        dispatch(setCategories(response.data));
-      })
-      .catch(error => {
-        apiErrorToast(error);
-      });
-  };
-}
-
 /* Selectors */
 function base(state) {
-  return state.store.list;
+  return state.categories.list;
 }
 
 export function getLoading(state) {
@@ -130,9 +117,9 @@ export function getLoading(state) {
 }
 
 export function getCategories(state) {
-  return base(state).stores;
+  return base(state).categories;
 }
 
-export function getCategoriesById(state, id) {
+export function getCategorieById(state, id) {
   return getCategories(state).find(s => s.id === id);
 }

@@ -3,22 +3,23 @@ import PropTypes from "prop-types";
 import { Container, Row, Col, Button } from "reactstrap";
 
 const CategoriesView = props => {
+
   return (
     <Container fluid>
-      <h1>{props.store.initials}</h1>
+      <h1>{props.categories.name}</h1>
       <Row>
         <Col lg="2">Iniciales</Col>
-        <Col>{props.store.initials}</Col>
+        <Col>{props.categories.initials}</Col>
       </Row>
       <Row>
         <Col lg="2">Description</Col>
-        <Col>{props.store.description}</Col>
+        <Col>{props.match.params.categories}</Col>
       </Row>
       <div className="categories-view__button-row">
         <Button
           className="categories-form__button"
           color="primary"
-          onClick={() => props.push(`/producttype/update/${props.match.params.id}`)}
+          onClick={() => props.push(`/categories/update/${props.match.params.id}`)}
         >
           Editar
         </Button>
@@ -26,7 +27,7 @@ const CategoriesView = props => {
           className="categories-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/producttype/view/${props.match.params.id}/remove`)
+            props.push(`/categories/view/${props.match.params.id}/remove`)
           }
         >
           Eliminar
@@ -34,7 +35,7 @@ const CategoriesView = props => {
         <Button
           className="categories-form__button"
           color="default"
-          onClick={() => props.push(`/producttype`)}
+          onClick={() => props.push(`/categories`)}
         >
           Volver
         </Button>
@@ -44,7 +45,7 @@ const CategoriesView = props => {
 };
 
 CategoriesView.propTypes = {
-  store: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
   push: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };
