@@ -71,6 +71,7 @@ export const signup = ({ username, password }) => dispatch => {
 
   api
     .post(url, { username: username, password: password })
+    // eslint-disable-next-line no-unused-vars
     .then(response => dispatch(login({ username, password })))
     .catch(() => {
       //toast.error('Ocurrió un error');
