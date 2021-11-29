@@ -2,24 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Button } from "reactstrap";
 
-const CategoriesView = props => {
+const CategoriesView = ({categories = {}, push, match}) => {
 
   return (
     <Container fluid>
-      <h1>{props.categories.name}</h1>
+      <h1>{categories.name}</h1>
       <Row>
         <Col lg="2">Iniciales</Col>
-        <Col>{props.categories.initials}</Col>
+        <Col>{categories.initials}</Col>
       </Row>
       <Row>
         <Col lg="2">Description</Col>
-        <Col>{props.match.params.categories}</Col>
+        <Col>{categories.description}</Col>
       </Row>
       <div className="categories-view__button-row">
         <Button
           className="categories-form__button"
           color="primary"
-          onClick={() => props.push(`/categories/update/${props.match.params.id}`)}
+          onClick={() => push(`/categories/update/${match.params.id}`)}
         >
           Editar
         </Button>
@@ -27,7 +27,7 @@ const CategoriesView = props => {
           className="categories-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/categories/view/${props.match.params.id}/remove`)
+            push(`/categories/view/${match.params.id}/remove`)
           }
         >
           Eliminar
@@ -35,7 +35,7 @@ const CategoriesView = props => {
         <Button
           className="categories-form__button"
           color="default"
-          onClick={() => props.push(`/categories`)}
+          onClick={() => push(`/categories`)}
         >
           Volver
         </Button>
