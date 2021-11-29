@@ -43,7 +43,9 @@ class ProvidersPage extends React.Component {
 
 ProvidersPage.propTypes = {
   providers: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  getAll: PropTypes.func,
+  fetchByFilters: PropTypes.func
 };
 
 const mapStateToProps = state => {
