@@ -24,6 +24,7 @@ height: 20px;
 margin-right: 10px;
 color: black;
 }
+
 .img_store{
 background-image: url('warehouse.png');
 background-size: cover;
@@ -35,6 +36,16 @@ margin-right: 10px;
 color: red;
 }
 
+.img_category{
+  background-image: url('category.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  color: black;
+  }
 .login-heading {
 font-weight: 300;
 }
