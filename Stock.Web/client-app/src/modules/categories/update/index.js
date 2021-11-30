@@ -5,21 +5,21 @@ import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { setLoading, ActionTypes } from "../list";
 
 /* Actions */
-function success(categories) {
+function success(category) {
   return {
     type: ActionTypes.UPDATE,
-    categories
+    category
   };
 }
 
-export function update(categories) {
+export function update(category) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .put(`/producttype/${categories.id}`, categories)
+      .put(`/producttype/${category.id}`, category)
       .then(() => {
         toast.success("El producto se editó con éxito");
-        dispatch(success(categories));
+        dispatch(success(category));
         dispatch(setLoading(false));
         return dispatch(goBack());
       })

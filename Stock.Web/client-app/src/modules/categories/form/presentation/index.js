@@ -10,9 +10,8 @@ const CategoryForm = props => {
   const { handleSubmit, handleCancel } = props;
   return (
     <Form onSubmit={handleSubmit}>
-      <Field label="Iniciales" name="initials" component={InputField} type="text" />
       <Field label="Descripción" name="description" component={InputField} type="text" />
-     
+      <Field label="Iniciales" name="initials" component={InputField} type="text" />
       <Button className="category-form__button" color="primary" type="submit">
         Guardar
       </Button>
