@@ -29,7 +29,7 @@ namespace Stock.Api
         {
             services.Configure<DomainSettings>(Configuration.GetSection("DomainSettings"));
             services.AddTransient<StoreService>();
-            //services.AddTransient<ProductService>();
+            //.AddTransient<ProductService>();
             services.AddTransient<ProviderService>();
             services.AddTransient<ProductTypeService>();
             services.AddTransient<Repository.LiteDb.Configuration.ConfigurationProvider>();
