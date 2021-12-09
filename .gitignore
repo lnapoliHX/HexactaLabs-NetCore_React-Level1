@@ -38,3 +38,5 @@ Stock.Api/*.db
 
 .fake
 .ionide
+.vscode/launch.json
+Stock.Api/.vscode/launch.json
